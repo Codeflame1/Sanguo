@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listlayout"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    tools:context="com.example.asus.sanguo.MainActivity">
+
+    <ImageView
+        android:id="@+id/list_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:gravity="center_horizontal|center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/list_image"
+        android:layout_toRightOf="@+id/list_image"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintLeft_toRightOf="@+id/list_image"
+        app:layout_constraintTop_toTopOf="@+id/list_image"
+        app:layout_constraintBottom_toBottomOf="@+id/list_image"
+        android:layout_marginStart="15dp" />
+
+
+</android.support.constraint.ConstraintLayout>
