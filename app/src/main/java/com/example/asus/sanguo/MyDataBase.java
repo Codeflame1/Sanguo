@@ -6,18 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by ASUS on 2017-11-07.
- */
-
 public class MyDataBase extends SQLiteOpenHelper {
     //数据库名字
-    public static final String DB_NAME = "Students.db";
+    private static final String DB_NAME = "Sanguo.db";
     //数据库版本
-    public static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 1;
     //表名
-    public static final String TABLE_NAME = "student";
-    public static MyDataBase myDataBase;
+    private static final String TABLE_NAME = "sanguo";
+    static MyDataBase myDataBase;
 
     /**
      * 单例模式返回数据库
@@ -25,7 +21,7 @@ public class MyDataBase extends SQLiteOpenHelper {
      * @param context 上下文
      * @return 数据库对象
      */
-    public static MyDataBase getInstances(Context context) {
+    static MyDataBase getInstances(Context context) {
         if (myDataBase == null) {
             return new MyDataBase(context);
         } else {
@@ -35,7 +31,7 @@ public class MyDataBase extends SQLiteOpenHelper {
 
 
     //上下文,数据库名字,数据库工厂,版本号
-    public MyDataBase(Context context) {
+    private MyDataBase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -43,7 +39,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //这个有个坑,create table"+" " + TABLE_NAME 中间一定要加空格,别问为什么,我也不知道,不加就语法错误,吐血
-        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,name text,sex text,age text,hobby text);");
+        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,sex text,birth text,death text,origo text,army text,introdduction text);");
 
     }
 
@@ -59,7 +55,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         if (newVersion > oldVersion) {
             //删除老表
-            sqLiteDatabase.execSQL("drop" + TABLE_NAME);
+            sqLiteDatabase.execSQL("drop table"+" "+TABLE_NAME);
             //重新创建表
             onCreate(sqLiteDatabase);
         }
@@ -68,13 +64,8 @@ public class MyDataBase extends SQLiteOpenHelper {
 
     /**
      * 创建一个用来插入数据的方法
-     *
-     * @param name  姓名
-     * @param sex   性别
-     * @param age   年龄
-     * @param hobby 爱好
      */
-    public void insert(String name, String sex, String age, String hobby) {
+    void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*
@@ -83,10 +74,14 @@ public class MyDataBase extends SQLiteOpenHelper {
         value 对应字段要插入的值
          */
         ContentValues values = new ContentValues();
+        values.put("image", image);
         values.put("name", name);
         values.put("sex", sex);
-        values.put("age", age);
-        values.put("hobby", hobby);
+        values.put("birth", birth);
+        values.put("death", death);
+        values.put("origo", origo);
+        values.put("army", army);
+        values.put("introduction", introduction);
         //插入
         database.insert(TABLE_NAME, null, values);
         //插入完成后关闭,以免造成内存泄漏
@@ -111,31 +106,33 @@ public class MyDataBase extends SQLiteOpenHelper {
      参数Cursor:返回值，相当于结果集ResultSet
      Cursor是一个游标接口，提供了遍历查询结果的方法，如移动指针方法move()，获得列值方法getString()等.
      */
-    public Cursor query() {
+    Cursor query() {
         //数据库可读
         SQLiteDatabase database = getReadableDatabase();
         //查找
-        Cursor query = database.query(TABLE_NAME, null, null, null, null, null, null);
-        return query;
+        return database.query(TABLE_NAME, null, null, null, null, null, null);
+    }
+
+    Cursor rawQuery(int i){
+        SQLiteDatabase database = getReadableDatabase();
+        String id = Integer.toString(i);
+        String[] where = {id + "", "image", "name", "sex", "birth", "death", "origo", "army" ,"introduction"};
+        String[] Args = {id};
+        return database.query("sanguo", where,"id=?",Args, null, null, null);
     }
 
     /**
      * 创建一个删除数据的方法,传入的参数越多,删除时越精确的找到要删除的哪一行
-     *
-     * @param name
-     * @param sex
-     * @param age
-     * @param hobby
      */
-    public void delete(int id, String name, String sex, String age, String hobby) {
+    public void delete(int id, String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
         /*
         删除的条件,当id = 传入的参数id时,sex = 传入的参数sex时,age = 传入的age,hobby = 传入的hobby时
         当条件都满足时才删除这行数据,一个条件不满足就删除失败
          */
-        String where = "id=? and name = ? and sex = ? and age = ? and hobby = ?";
+        String where = "id=? and image ? and name = ? and sex = ? and birth = ? and death = ? and origo = ? and army = ? and introduction = ?";
         //删除条件的参数
-        String[] whereArgs = {id + "", name, sex, age, hobby};
+        String[] whereArgs = {id + "", image, name, sex, birth, death, origo, army ,introduction};
         database.delete(TABLE_NAME, where, whereArgs);
         database.close();
     }
@@ -143,7 +140,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 再创建一个删除一个删除的方法,条件只有一个
      */
-    public void delete(int id) {
+    void delete(int id) {
         SQLiteDatabase database = getWritableDatabase();
         //当条件满足id = 传入的参数的时候,就删除那整行数据,有可能有好几行都满足这个条件,满足的全部都删除
         String where = "id = ?";
@@ -154,22 +151,21 @@ public class MyDataBase extends SQLiteOpenHelper {
 
     /**
      * 创建一个修改数据的方法
-     * @param id   条件,修改id为"id"的那一行数据
-     * @param name
-     * @param sex
-     * @param age
-     * @param hobby
      */
-    public void updata(int id,String name, String sex, String age, String hobby) {
+    void updata(int id, String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
 //        update(String table,ContentValues values,String  whereClause, String[]  whereArgs)
         String where = "id = ?";
         String[] whereArgs = {id+""};
         ContentValues values = new ContentValues();
+        values.put("image",image);
         values.put("name", name);
         values.put("sex", sex);
-        values.put("age", age);
-        values.put("hobby", hobby);
+        values.put("birth", birth);
+        values.put("death", death);
+        values.put("origo", origo);
+        values.put("army", army);
+        values.put("introduction", introduction);
         //参数1  表名称  参数2  跟行列ContentValues类型的键值对Key-Value
         // 参数3  更新条件（where字句）    参数4  更新条件数组
         database.update(TABLE_NAME, values,where, whereArgs);
