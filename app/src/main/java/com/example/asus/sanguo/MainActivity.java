@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -29,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private MyListViewAdapter adapter;
     private ListView mListView;
     private Button mListAdd;
-    private SearchView mSearchview;
+    private ImageButton searchButton;
+    private TextInputLayout characterlistsearch;
+    private EditText msearch;
 
 
     @Override
@@ -39,14 +44,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mListView = findViewById(R.id.characterlist);
         mListAdd = findViewById(R.id.characterlistadd);
-        mSearchview = findViewById(R.id.characterlistsearch);
-        List<Map<String, Object>> data = getData();
+        characterlistsearch = findViewById(R.id.characterlistsearch);
+        searchButton = findViewById(R.id.characterlistsearchButton);
+        msearch = characterlistsearch.getEditText();
+        List<Map<String, Object>> data = getData("");
         adapter = new MyListViewAdapter(this, data);
         mListView.setAdapter(adapter);
         mListView.setTextFilterEnabled(true);
-        mSearchview.setIconifiedByDefault(false);
-        mSearchview.setSubmitButtonEnabled(true);
-        mSearchview.setQueryHint("search");
         adapter.notifyDataSetChanged();
         MyDataBase.getInstances(MainActivity.this).insert("1", "aa","y","11","12","aaa","aaaa","aaaaa");
         setListener();
@@ -55,25 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListener() {
 
-        mSearchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                if (adapter instanceof Filterable) {
-                    Filter filter = adapter.getFilter();
-                    if (!TextUtils.isEmpty(s)) {
-                        filter.filter(null);
-                    } else {
-                        filter.filter(s);
-                    }
-                }
-                return false;
+            public void onClick(View view) {
+                String search = msearch.getText().toString().trim();
+                List<Map<String, Object>> data1 = getData(search);
+                adapter.refreshList(data1);
             }
         });
+
         //点击跳转
         mListAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1://删除
                         MyDataBase.getInstances(MainActivity.this).delete(id);
                         //重新查询,然后显示
-                        List<Map<String, Object>> data = getData();
+                        List<Map<String, Object>> data = getData("");
                         adapter.refreshList(data);
                         Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
                         break;
@@ -196,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 通过查找数据库,拿到里面的数据
      */
-    private List<Map<String, Object>> getData() {
+    private List<Map<String, Object>> getData(String s) {
         list = new ArrayList<>();
         Cursor query = MyDataBase.getInstances(MainActivity.this).query();
         /*
@@ -214,18 +208,37 @@ public class MainActivity extends AppCompatActivity {
                 String origo = query.getString(query.getColumnIndex("origo"));
                 String army = query.getString(query.getColumnIndex("army"));
                 String introduction = query.getString(query.getColumnIndex("introduction"));
-                int id = query.getInt(query.getColumnIndex("id"));
-                Map<String, Object> map = new HashMap<>();
-                map.put("id", id);
-                map.put("image", image);
-                map.put("name", name);
-                map.put("sex", sex);
-                map.put("birth", birth);
-                map.put("death", death);
-                map.put("origo", origo);
-                map.put("army", army);
-                map.put("introduction", introduction);
-                list.add(map);
+
+                if (s.isEmpty()) {
+                    int id = query.getInt(query.getColumnIndex("id"));
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", id);
+                    map.put("image", image);
+                    map.put("name", name);
+                    map.put("sex", sex);
+                    map.put("birth", birth);
+                    map.put("death", death);
+                    map.put("origo", origo);
+                    map.put("army", army);
+                    map.put("introduction", introduction);
+                    list.add(map);
+                } else {
+                    if (name.contains(s)||sex.contains(s)||birth.contains(s)||death.contains(s)) {
+                        int id = query.getInt(query.getColumnIndex("id"));
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("id", id);
+                        map.put("image", image);
+                        map.put("name", name);
+                        map.put("sex", sex);
+                        map.put("birth", birth);
+                        map.put("death", death);
+                        map.put("origo", origo);
+                        map.put("army", army);
+                        map.put("introduction", introduction);
+                        list.add(map);
+                    }
+                }
+
             } while (query.moveToNext());
         }
         //关闭查询游标
@@ -237,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
-            List<Map<String, Object>> data1 = getData();
+            List<Map<String, Object>> data1 = getData("");
 //            adapter = new MyListViewAdapter(this, data1);
 //            mListView.setAdapter(adapter);
             adapter.refreshList(data1);
