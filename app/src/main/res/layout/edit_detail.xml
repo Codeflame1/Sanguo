@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <ScrollView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:context="com.example.asus.sanguo.EditCharacter">
 
-            <ImageButton
+            <Spinner
+                android:id="@+id/edit_image_name"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/image"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_image" />
+
+            <ImageView
                 android:id="@+id/edit_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
@@ -33,11 +43,11 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_name"
-                app:layout_constraintTop_toBottomOf="@+id/edit_image">
+                app:layout_constraintTop_toBottomOf="@+id/edit_image_name">
 
                 <EditText
                     android:layout_width="260dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="text"
                     android:textSize="18sp"
@@ -49,12 +59,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_name"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_image"
+                app:layout_constraintTop_toBottomOf="@+id/edit_image_name"
                 tools:ignore="MissingConstraints" />
 
             <android.support.design.widget.TextInputLayout
@@ -68,7 +78,7 @@
 
                 <EditText
                     android:layout_width="260dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="text"
                     android:textSize="18sp"
@@ -80,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_sex"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -99,7 +109,7 @@
 
                 <EditText
                     android:layout_width="220dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
                     android:textSize="18sp"
@@ -111,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_date_birth"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -130,7 +140,7 @@
 
                 <EditText
                     android:layout_width="220dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
                     android:textSize="18sp"
@@ -142,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_date_death"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -161,7 +171,7 @@
 
                 <EditText
                     android:layout_width="220dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
                     android:textSize="18sp"
@@ -173,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_origo"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -192,7 +202,7 @@
 
                 <EditText
                     android:layout_width="220dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
                     android:textSize="18sp"
@@ -204,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_army"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -223,7 +233,7 @@
 
                 <EditText
                     android:layout_width="220dp"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:ems="20"
                     android:gravity="top"
                     android:minLines="8"
@@ -239,7 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/property_introduction"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -251,11 +261,13 @@
                 android:id="@+id/edit_buttonconfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/buttonshape"
                 android:text="@string/confirm"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/edit_buttoncancel"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -265,11 +277,13 @@
                 android:id="@+id/edit_buttoncancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/buttonshape"
                 android:text="@string/cancel"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/edit_buttonconfirm"
@@ -277,6 +291,3 @@
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
-
-
-</android.support.constraint.ConstraintLayout>

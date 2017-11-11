@@ -2,6 +2,7 @@ package com.example.asus.sanguo;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,9 +11,12 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -25,7 +29,8 @@ import java.io.InputStream;
 public class EditCharacter extends AppCompatActivity {
 
     private int id;
-    private ImageButton edit_image;
+    private Spinner edit_imagename;
+    private ImageView edit_image;
     private TextInputLayout edit_name;
     private TextInputLayout edit_sex;
     private TextInputLayout edit_birth;
@@ -40,16 +45,13 @@ public class EditCharacter extends AppCompatActivity {
     private EditText medit_origo;
     private EditText medit_army;
     private EditText medit_introduction;
-    public String filePath;
+    public String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_detail);
         id = getIntent().getIntExtra("id", 0);
-
-
-        final String image = getIntent().getStringExtra("image");
         String name = getIntent().getStringExtra("name");
         String sex = getIntent().getStringExtra("sex");
         String birth = getIntent().getStringExtra("birth");
@@ -57,9 +59,11 @@ public class EditCharacter extends AppCompatActivity {
         String origo = getIntent().getStringExtra("origo");
         String army = getIntent().getStringExtra("army");
         String introduction = getIntent().getStringExtra("introduction");
+        String image = getIntent().getStringExtra("image");
 
         final Button edit_confirm = findViewById(R.id.edit_buttonconfirm);
         Button edit_cancel = findViewById(R.id.edit_buttoncancel);
+        edit_imagename = findViewById(R.id.edit_image_name);
         edit_image = findViewById(R.id.edit_image);
         edit_name = findViewById(R.id.edit_name);
         edit_sex = findViewById(R.id.edit_sex);
@@ -75,7 +79,7 @@ public class EditCharacter extends AppCompatActivity {
         medit_origo = edit_origo.getEditText();
         medit_army = edit_army.getEditText();
         medit_introduction = edit_introduction.getEditText();
-        edit_image.setImageURI(Uri.fromFile(new File(image)));
+        edit_image.setImageResource(ImageGet.getImage(image));
         medit_name.setText(name);
         medit_sex.setText(sex);
         medit_birth.setText(birth);
@@ -83,14 +87,28 @@ public class EditCharacter extends AppCompatActivity {
         medit_origo.setText(origo);
         medit_army.setText(army);
         medit_introduction.setText(introduction);
+        str = (String) edit_imagename.getSelectedItem();
 
-        edit_image.setOnClickListener(new View.OnClickListener() {
+//        edit_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 0x1);
+//            }
+//        });
+
+        edit_imagename.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 0x1);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                str = (String) edit_imagename.getSelectedItem();
+                edit_image.setImageResource(ImageGet.getImage(str));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                edit_image.setImageResource(ImageGet.getImage(""));
             }
         });
 
@@ -98,7 +116,7 @@ public class EditCharacter extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //拿到输入的数据
-                String image = filePath;
+                String image = (String)edit_imagename.getSelectedItem();
                 String name = medit_name.getText().toString().trim();
                 String sex = medit_sex.getText().toString().trim();
                 String birth = medit_birth.getText().toString().trim();
@@ -149,117 +167,117 @@ public class EditCharacter extends AppCompatActivity {
                 finish();
             }
         });
-
-        Bitmap bitmap1= readImg();
-        if(bitmap1!=null){
-            edit_image.setImageBitmap(bitmap1);
-        }else{
-        }
+//
+//        Bitmap bitmap1= readImg();
+//        if(bitmap1!=null){
+//            edit_image.setImageBitmap(bitmap1);
+//        }else{
+//        }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0x1) {
-            if (data != null) {
-                Uri uri = data.getData();
-                getImg(uri);
-            } else {
-                return;
-            }
-        }
-        if (requestCode == 0x2) {
-            if (data != null) {
-                Bundle bundle = data.getExtras();
-                //得到图片
-                Bitmap bitmap = bundle.getParcelable("data");
-                //保存到图片到本地
-                saveImg(bitmap);
-                //设置图片
-                edit_image.setImageBitmap(bitmap);
-                filePath = data.getData().getPath();
-            } else {
-                return;
-            }
-        }
-    }
-
-    //读取位图（图片）
-    private Bitmap readImg() {
-        File mfile = new File(filePath);
-        Bitmap bm = null;
-        if (mfile.exists()) {        //若该文件存在
-            bm = BitmapFactory.decodeFile(filePath);
-        }
-        return bm;
-    }
-
-    //保存图片到本地，下次直接读取
-    private void saveImg(Bitmap mBitmap)  {
-        File f = new File(filePath);
-        try {
-            //如果文件不存在，则创建文件
-            if(!f.exists()){
-                f.createNewFile();
-            }
-            //输出流
-            FileOutputStream out = new FileOutputStream(f);
-            /** mBitmap.compress 压缩图片
-             *
-             *  Bitmap.CompressFormat.PNG   图片的格式
-             *   100  图片的质量（0-100）
-             *   out  文件输出流
-             */
-            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-            Toast.makeText(this,f.getAbsolutePath().toString(),Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private void getImg(Uri uri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(uri);
-            //从输入流中解码位图
-            // Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-            //保存位图
-            // img.setImageBitmap(bitmap);
-            cutImg(uri);
-            //关闭流
-            inputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    //裁剪图片
-    private void cutImg(Uri uri) {
-        if (uri != null) {
-            Intent intent = new Intent("com.android.camera.action.CROP");
-            intent.setDataAndType(uri, "image/*");
-            //true:出现裁剪的框
-            intent.putExtra("crop", "true");
-            //裁剪宽高时的比例
-            intent.putExtra("aspectX", 1);
-            intent.putExtra("aspectY", 1);
-            //裁剪后的图片的大小
-            intent.putExtra("outputX", 300);
-            intent.putExtra("outputY", 300);
-            intent.putExtra("return-data", true);  // 返回数据
-            intent.putExtra("output", uri);
-            intent.putExtra("scale", true);
-            startActivityForResult(intent, 0x2);
-        } else {
-            return;
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == 0x1) {
+//            if (data != null) {
+//                Uri uri = data.getData();
+//                getImg(uri);
+//            } else {
+//                return;
+//            }
+//        }
+//        if (requestCode == 0x2) {
+//            if (data != null) {
+//                Bundle bundle = data.getExtras();
+//                //得到图片
+//                Bitmap bitmap = bundle.getParcelable("data");
+//                //保存到图片到本地
+//                saveImg(bitmap);
+//                //设置图片
+//                edit_image.setImageBitmap(bitmap);
+//                filePath = data.getData().getPath();
+//            } else {
+//                return;
+//            }
+//        }
+//    }
+//
+//    //读取位图（图片）
+//    private Bitmap readImg() {
+//        File mfile = new File(filePath);
+//        Bitmap bm = null;
+//        if (mfile.exists()) {        //若该文件存在
+//            bm = BitmapFactory.decodeFile(filePath);
+//        }
+//        return bm;
+//    }
+//
+//    //保存图片到本地，下次直接读取
+//    private void saveImg(Bitmap mBitmap)  {
+//        File f = new File(filePath);
+//        try {
+//            //如果文件不存在，则创建文件
+//            if(!f.exists()){
+//                f.createNewFile();
+//            }
+//            //输出流
+//            FileOutputStream out = new FileOutputStream(f);
+//            /** mBitmap.compress 压缩图片
+//             *
+//             *  Bitmap.CompressFormat.PNG   图片的格式
+//             *   100  图片的质量（0-100）
+//             *   out  文件输出流
+//             */
+//            mBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+//            out.flush();
+//            out.close();
+//            Toast.makeText(this,f.getAbsolutePath().toString(),Toast.LENGTH_SHORT).show();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    private void getImg(Uri uri) {
+//        try {
+//            InputStream inputStream = getContentResolver().openInputStream(uri);
+//            //从输入流中解码位图
+//            // Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//            //保存位图
+//            // img.setImageBitmap(bitmap);
+//            cutImg(uri);
+//            //关闭流
+//            inputStream.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//
+//    //裁剪图片
+//    private void cutImg(Uri uri) {
+//        if (uri != null) {
+//            Intent intent = new Intent("com.android.camera.action.CROP");
+//            intent.setDataAndType(uri, "image/*");
+//            //true:出现裁剪的框
+//            intent.putExtra("crop", "true");
+//            //裁剪宽高时的比例
+//            intent.putExtra("aspectX", 1);
+//            intent.putExtra("aspectY", 1);
+//            //裁剪后的图片的大小
+//            intent.putExtra("outputX", 300);
+//            intent.putExtra("outputY", 300);
+//            intent.putExtra("return-data", true);  // 返回数据
+//            intent.putExtra("output", uri);
+//            intent.putExtra("scale", true);
+//            startActivityForResult(intent, 0x2);
+//        } else {
+//            return;
+//        }
+//    }
 }

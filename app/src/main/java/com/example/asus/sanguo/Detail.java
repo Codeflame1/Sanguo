@@ -1,8 +1,6 @@
 package com.example.asus.sanguo;
 
 import android.annotation.SuppressLint;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 
 @SuppressLint("Registered")
 public class Detail extends AppCompatActivity{
@@ -29,19 +26,16 @@ public class Detail extends AppCompatActivity{
         TextView detailintroduction = findViewById(R.id.detail_introduction);
         ImageButton detailback = findViewById(R.id.back);
 
-        int id = getIntent().getIntExtra("id", 0);
-        Cursor cursor = MyDataBase.myDataBase.rawQuery(id);
+        String name = getIntent().getStringExtra("name");
+        String sex = getIntent().getStringExtra("sex");
+        String birth = getIntent().getStringExtra("birth");
+        String death = getIntent().getStringExtra("death");
+        String origo = getIntent().getStringExtra("origo");
+        String army = getIntent().getStringExtra("army");
+        String introduction = getIntent().getStringExtra("introduction");
+        String image = getIntent().getStringExtra("image");
 
-        String image = cursor.getString(cursor.getColumnIndex("image"));
-        String name = cursor.getString(cursor.getColumnIndex("name"));
-        String sex = cursor.getString(cursor.getColumnIndex("sex"));
-        String birth = cursor.getString(cursor.getColumnIndex("birth"));
-        String death = cursor.getString(cursor.getColumnIndex("death"));
-        String origo = cursor.getString(cursor.getColumnIndex("origo"));
-        String army = cursor.getString(cursor.getColumnIndex("army"));
-        String introduction = cursor.getString(cursor.getColumnIndex("introduction"));
-
-        detailimage.setImageURI(Uri.fromFile(new File(image)));
+        detailimage.setImageResource(ImageGet.getImage(image));
         detailname.setText(name);
         detailsex.setText(sex);
         detaildate.setText(birth + "-" + death);

@@ -3,14 +3,20 @@ package com.example.asus.sanguo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Map<String, Object>> list;
     private MyListViewAdapter adapter;
     private ListView mListView;
+    private Button mListAdd;
+    private SearchView mSearchview;
 
 
     @Override
@@ -29,22 +37,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
+        mListView = findViewById(R.id.characterlist);
+        mListAdd = findViewById(R.id.characterlistadd);
+        mSearchview = findViewById(R.id.characterlistsearch);
+        List<Map<String, Object>> data = getData();
+        adapter = new MyListViewAdapter(this, data);
+        mListView.setAdapter(adapter);
+        mListView.setTextFilterEnabled(true);
+        mSearchview.setIconifiedByDefault(false);
+        mSearchview.setSubmitButtonEnabled(true);
+        mSearchview.setQueryHint("search");
+        adapter.notifyDataSetChanged();
+        MyDataBase.getInstances(MainActivity.this).insert("1", "aa","y","11","12","aaa","aaaa","aaaaa");
         setListener();
     }
 
 
-    private void initView() {
-        mListView = (ListView) findViewById(R.id.characterlist);
-        List<Map<String, Object>> data = getData();
-        adapter = new MyListViewAdapter(this, data);
-        mListView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
     private void setListener() {
+
+        mSearchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (adapter instanceof Filterable) {
+                    Filter filter = adapter.getFilter();
+                    if (!TextUtils.isEmpty(s)) {
+                        filter.filter(null);
+                    } else {
+                        filter.filter(s);
+                    }
+                }
+                return false;
+            }
+        });
         //点击跳转
-        findViewById(R.id.characterlistadd).setOnClickListener(new View.OnClickListener() {
+        mListAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddCharacter.class);
@@ -52,11 +83,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //ListView的监听事件
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            private int id;
-
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
 //                //删除是要拿到当前行的id值才能删除当前行,下面的操作都是点击某个item拿到对应item的id字段
 //                //拿到当前position的 item的所有数据
 //                //返回的数据格式为{name=段炼, age=25, sex=男, id=12, death=吃饭。睡觉}
@@ -81,12 +111,45 @@ public class MainActivity extends AppCompatActivity {
                 //得到对应item里面的id
                 Object id = list.get(position).get("id");
                 int i = Integer.parseInt(id.toString());
+                String image = list.get(position).get("image").toString();
                 String name = list.get(position).get("name").toString();
                 String sex = list.get(position).get("sex").toString();
                 String birth = list.get(position).get("birth").toString();
                 String death = list.get(position).get("death").toString();
+                String origo = list.get(position).get("origo").toString();
+                String army = list.get(position).get("army").toString();
+                String introduction = list.get(position).get("introduction").toString();
                 //将得到id传入到需要的方法中
-                showMyDialog(i, name, sex, birth, death);
+                showMyDialog(i, image, name, sex, birth, death, origo, army, introduction);
+                return true;
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) return;
+                Object id = list.get(position).get("id");
+                int i = Integer.parseInt(id.toString());
+                String image = list.get(position).get("image").toString();
+                String name = list.get(position).get("name").toString();
+                String sex = list.get(position).get("sex").toString();
+                String birth = list.get(position).get("birth").toString();
+                String death = list.get(position).get("death").toString();
+                String origo = list.get(position).get("origo").toString();
+                String army = list.get(position).get("army").toString();
+                String introduction = list.get(position).get("introduction").toString();
+                Intent intent = new Intent(MainActivity.this, Detail.class);
+                intent.putExtra("id", i);
+                intent.putExtra("image", image);
+                intent.putExtra("name", name);
+                intent.putExtra("sex", sex);
+                intent.putExtra("birth", birth);
+                intent.putExtra("death", death);
+                intent.putExtra("origo", origo);
+                intent.putExtra("army", army);
+                intent.putExtra("introduction", introduction);
+                startActivityForResult(intent,0);
             }
         });
     }
@@ -94,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 点击显示对话框选择修改或者是删除
      */
-    private void showMyDialog(final int id, final String name, final String sex, final String birth, final String death) {
+    private void showMyDialog(final int id, final String image, final String name, final String sex, final String birth, final String death, final String origo, final String army, final String introduction) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //设置一个标题
         builder.setTitle("请选择");
@@ -106,10 +169,14 @@ public class MainActivity extends AppCompatActivity {
                     case 0://修改
                         Intent intent = new Intent(MainActivity.this, EditCharacter.class);
                         intent.putExtra("id", id);
+                        intent.putExtra("image", image);
                         intent.putExtra("name", name);
                         intent.putExtra("sex", sex);
                         intent.putExtra("birth", birth);
                         intent.putExtra("death", death);
+                        intent.putExtra("origo", origo);
+                        intent.putExtra("army", army);
+                        intent.putExtra("introduction", introduction);
                         startActivityForResult(intent,0);
                         break;
                     case 1://删除
@@ -139,17 +206,25 @@ public class MainActivity extends AppCompatActivity {
          */
         if (query.moveToFirst()) {
             do {
+                String image = query.getString(query.getColumnIndex("image"));
                 String name = query.getString(query.getColumnIndex("name"));
                 String sex = query.getString(query.getColumnIndex("sex"));
                 String birth = query.getString(query.getColumnIndex("birth"));
                 String death = query.getString(query.getColumnIndex("death"));
+                String origo = query.getString(query.getColumnIndex("origo"));
+                String army = query.getString(query.getColumnIndex("army"));
+                String introduction = query.getString(query.getColumnIndex("introduction"));
                 int id = query.getInt(query.getColumnIndex("id"));
                 Map<String, Object> map = new HashMap<>();
                 map.put("id", id);
+                map.put("image", image);
                 map.put("name", name);
                 map.put("sex", sex);
                 map.put("birth", birth);
                 map.put("death", death);
+                map.put("origo", origo);
+                map.put("army", army);
+                map.put("introduction", introduction);
                 list.add(map);
             } while (query.moveToNext());
         }

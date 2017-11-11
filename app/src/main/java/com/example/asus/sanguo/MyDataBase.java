@@ -39,7 +39,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //这个有个坑,create table"+" " + TABLE_NAME 中间一定要加空格,别问为什么,我也不知道,不加就语法错误,吐血
-        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,sex text,birth text,death text,origo text,army text,introdduction text);");
+        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,sex text,birth text,death text,origo text,army text,introduction text);");
 
     }
 
@@ -65,7 +65,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个用来插入数据的方法
      */
-    void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
+    public void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*
@@ -83,7 +83,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         values.put("army", army);
         values.put("introduction", introduction);
         //插入
-        database.insert(TABLE_NAME, null, values);
+        database.insert(TABLE_NAME, "image", values);
         //插入完成后关闭,以免造成内存泄漏
         database.close();
 
@@ -113,12 +113,17 @@ public class MyDataBase extends SQLiteOpenHelper {
         return database.query(TABLE_NAME, null, null, null, null, null, null);
     }
 
-    Cursor rawQuery(int i){
+    Cursor rawQuery(String name) {
         SQLiteDatabase database = getReadableDatabase();
-        String id = Integer.toString(i);
-        String[] where = {id + "", "image", "name", "sex", "birth", "death", "origo", "army" ,"introduction"};
-        String[] Args = {id};
-        return database.query("sanguo", where,"id=?",Args, null, null, null);
+        return database.query("sanguo", null, "name='"+name+"'", null, null, null, null);
+    }
+
+    Cursor searchQuery(String s, String type) {
+        SQLiteDatabase database = getReadableDatabase();
+        String[] clumns = {"id", "image", "name", "sex", "birth", "death", "origo", "army" ,"introduction"};
+        String selection = type + "=?";
+        String[] Args = {s};
+        return database.query("sanguo", clumns, selection, Args, null, null, null);
     }
 
     /**
