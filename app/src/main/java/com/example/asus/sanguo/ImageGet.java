@@ -10,7 +10,7 @@ public class ImageGet {
             case "1":
                 return R.mipmap.ic_launcher;
             case "2":
-                return R.mipmap.ic_launcher_round;
+                return R.mipmap.zhaoyun;
             default:
                 return R.mipmap.back;
         }

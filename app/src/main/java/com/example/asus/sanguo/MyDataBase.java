@@ -65,7 +65,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个用来插入数据的方法
      */
-    public void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
+    void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*

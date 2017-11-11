@@ -3,23 +3,16 @@ package com.example.asus.sanguo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private Button mListAdd;
     private ImageButton searchButton;
-    private TextInputLayout characterlistsearch;
     private EditText msearch;
 
 
@@ -44,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mListView = findViewById(R.id.characterlist);
         mListAdd = findViewById(R.id.characterlistadd);
-        characterlistsearch = findViewById(R.id.characterlistsearch);
+        TextInputLayout characterlistsearch = findViewById(R.id.characterlistsearch);
         searchButton = findViewById(R.id.characterlistsearchButton);
         msearch = characterlistsearch.getEditText();
+        MyDataBase.getInstances(MainActivity.this).insert("2", "赵云(子龙)","男","158","228","常山真定","蜀汉","    身长八尺，姿颜雄伟，蜀汉五虎上将之一。\n    汉末军阀混战，赵云受本郡推举，率领义从加入白马将军公孙瓒。期间结识了汉室皇亲刘备，但不久之后，因为兄长去世而离开。赵云离开公孙瓒大约七年左右的时间，在邺城与刘备相见，从此追随刘备。");
         List<Map<String, Object>> data = getData("");
         adapter = new MyListViewAdapter(this, data);
         mListView.setAdapter(adapter);
         mListView.setTextFilterEnabled(true);
         adapter.notifyDataSetChanged();
-        MyDataBase.getInstances(MainActivity.this).insert("1", "aa","y","11","12","aaa","aaaa","aaaaa");
         setListener();
     }
 
@@ -122,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position==0) return;
                 Object id = list.get(position).get("id");
                 int i = Integer.parseInt(id.toString());
                 String image = list.get(position).get("image").toString();
@@ -208,10 +199,11 @@ public class MainActivity extends AppCompatActivity {
                 String origo = query.getString(query.getColumnIndex("origo"));
                 String army = query.getString(query.getColumnIndex("army"));
                 String introduction = query.getString(query.getColumnIndex("introduction"));
+                int id = query.getInt(query.getColumnIndex("id"));
+                Map<String, Object> map = new HashMap<>();
+
 
                 if (s.isEmpty()) {
-                    int id = query.getInt(query.getColumnIndex("id"));
-                    Map<String, Object> map = new HashMap<>();
                     map.put("id", id);
                     map.put("image", image);
                     map.put("name", name);
@@ -224,8 +216,6 @@ public class MainActivity extends AppCompatActivity {
                     list.add(map);
                 } else {
                     if (name.contains(s)||sex.contains(s)||birth.contains(s)||death.contains(s)) {
-                        int id = query.getInt(query.getColumnIndex("id"));
-                        Map<String, Object> map = new HashMap<>();
                         map.put("id", id);
                         map.put("image", image);
                         map.put("name", name);

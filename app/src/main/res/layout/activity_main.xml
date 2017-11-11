@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.asus.sanguo.MainActivity">
 
+
     <Button
         android:id="@+id/characterlistadd"
         android:layout_width="50dp"
@@ -30,7 +31,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:ems="15"
+            android:ems="13"
             android:inputType="text"
             android:textSize="18sp"
             tools:ignore="LabelFor" />
@@ -46,10 +47,11 @@
 
     <ImageButton
         android:id="@+id/characterlistsearchButton"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:background="@mipmap/searchbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        tools:ignore="ContentDescription" />
 
 </android.support.constraint.ConstraintLayout>
