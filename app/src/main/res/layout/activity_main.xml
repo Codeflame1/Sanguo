@@ -6,6 +6,47 @@
     android:layout_height="match_parent"
     tools:context="com.example.asus.sanguo.MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/characterlistsearchButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@mipmap/searchbutton"
+                tools:ignore="ContentDescription" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/characterlistsearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="18"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    tools:ignore="LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/characterlist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </ListView>
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/characterlistadd"
@@ -20,38 +61,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/characterlistsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/characterlistsearchButton"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="13"
-            android:inputType="text"
-            android:textSize="18sp"
-            tools:ignore="LabelFor" />
-    </android.support.design.widget.TextInputLayout>
-
-    <ListView
-        android:id="@+id/characterlist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/characterlistsearch">
-
-    </ListView>
-
-    <ImageButton
-        android:id="@+id/characterlistsearchButton"
-        android:layout_width="63dp"
-        android:layout_height="63dp"
-        android:background="@mipmap/searchbutton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
 
 </android.support.constraint.ConstraintLayout>

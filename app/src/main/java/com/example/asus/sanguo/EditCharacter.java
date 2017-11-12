@@ -34,6 +34,12 @@ public class EditCharacter extends AppCompatActivity {
     private EditText medit_origo;
     private EditText medit_army;
     private EditText medit_introduction;
+    private Spinner edit_stre;
+    private Spinner edit_endu;
+    private Spinner edit_agil;
+    private Spinner edit_magi;
+    private Spinner edit_luck;
+    private Spinner edit_skil;
     public String str;
     public String str1;
 
@@ -51,6 +57,12 @@ public class EditCharacter extends AppCompatActivity {
         String army = getIntent().getStringExtra("army");
         String introduction = getIntent().getStringExtra("introduction");
         String image = getIntent().getStringExtra("image");
+        String stre = getIntent().getStringExtra("stre");
+        String endu = getIntent().getStringExtra("endu");
+        String agil = getIntent().getStringExtra("agil");
+        String magi = getIntent().getStringExtra("magi");
+        String luck = getIntent().getStringExtra("luck");
+        String skil = getIntent().getStringExtra("skil");
 
         final Button edit_confirm = findViewById(R.id.edit_buttonconfirm);
         Button edit_cancel = findViewById(R.id.edit_buttoncancel);
@@ -65,6 +77,12 @@ public class EditCharacter extends AppCompatActivity {
         edit_origo = findViewById(R.id.edit_origo);
         edit_army = findViewById(R.id.edit_army);
         edit_introduction = findViewById(R.id.edit_introduction);
+        edit_stre = findViewById(R.id.edit_stre);
+        edit_endu = findViewById(R.id.edit_endu);
+        edit_agil = findViewById(R.id.edit_agil);
+        edit_magi = findViewById(R.id.edit_magi);
+        edit_luck = findViewById(R.id.edit_luck);
+        edit_skil = findViewById(R.id.edit_skil);
         medit_name = edit_name.getEditText();
         medit_birth = edit_birth.getEditText();
         medit_death = edit_death.getEditText();
@@ -76,6 +94,12 @@ public class EditCharacter extends AppCompatActivity {
         edit_jobframe.setImageResource(ImageGet.getBigFrame(job));
         edit_imagename.setSelection(SpinnerSelect.getImageSelect(image));
         edit_job.setSelection(SpinnerSelect.getJobSelect(job));
+        edit_stre.setSelection(SpinnerSelect.getLevel(stre));
+        edit_endu.setSelection(SpinnerSelect.getLevel(endu));
+        edit_agil.setSelection(SpinnerSelect.getLevel(agil));
+        edit_magi.setSelection(SpinnerSelect.getLevel(magi));
+        edit_luck.setSelection(SpinnerSelect.getLevel(luck));
+        edit_skil.setSelection(SpinnerSelect.getLevel(skil));
         medit_name.setText(name);
         edit_sex.setSelection(SpinnerSelect.getSex(sex));
         medit_birth.setText(birth);
@@ -135,6 +159,12 @@ public class EditCharacter extends AppCompatActivity {
                 String origo = medit_origo.getText().toString().trim();
                 String army = medit_army.getText().toString().trim();
                 String introduction = medit_introduction.getText().toString().trim();
+                String stre = (String)edit_stre.getSelectedItem();
+                String endu = (String)edit_endu.getSelectedItem();
+                String agil = (String)edit_agil.getSelectedItem();
+                String magi = (String)edit_magi.getSelectedItem();
+                String luck = (String)edit_luck.getSelectedItem();
+                String skil = (String)edit_skil.getSelectedItem();
 
                 edit_name.setErrorEnabled(false);
                 edit_birth.setErrorEnabled(false);
@@ -162,7 +192,7 @@ public class EditCharacter extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army, introduction);
+                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
                     finish();
                 }
             }

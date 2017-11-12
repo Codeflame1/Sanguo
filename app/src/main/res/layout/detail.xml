@@ -34,73 +34,88 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/archerbig" />
+                app:srcCompat="@mipmap/archerbig"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/detail_name"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:gravity="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/detail_introduction"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/detail_imageframe" />
+
+            <TextView
+                android:id="@+id/detail_job"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_imageframe" />
 
             <TextView
                 android:id="@+id/detail_sex"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:gravity="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/detail_introduction"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/detail_name" />
 
             <TextView
                 android:id="@+id/detail_date"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:gravity="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/detail_introduction"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/detail_sex" />
 
             <TextView
                 android:id="@+id/detail_origo"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:gravity="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/detail_introduction"
-                app:layout_constraintTop_toBottomOf="@+id/detail_date" />
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_job" />
 
             <TextView
                 android:id="@+id/detail_army"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:gravity="center"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/detail_introduction"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detail_origo" />
 
             <TextView
                 android:id="@+id/detail_introduction"
-                android:layout_width="160dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailtexthape"
                 android:inputType="textMultiLine"
@@ -108,7 +123,9 @@
                 android:minLines="5"
                 android:scrollbars="vertical"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pro_introduction" />
 
             <ImageButton
@@ -126,6 +143,7 @@
                 android:id="@+id/pro_name"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
@@ -133,12 +151,29 @@
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/detail_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_imageframe" />
+
+            <TextView
+                android:id="@+id/pro_job"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/job"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/detail_job"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/detail_imageframe" />
 
             <TextView
                 android:id="@+id/pro_sex"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
@@ -146,12 +181,14 @@
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/detail_sex"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pro_name" />
 
             <TextView
                 android:id="@+id/pro_date"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
@@ -159,12 +196,14 @@
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/detail_date"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pro_sex" />
 
             <TextView
                 android:id="@+id/pro_origo"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
@@ -172,12 +211,14 @@
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/detail_origo"
-                app:layout_constraintTop_toBottomOf="@+id/pro_date" />
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/detail_job" />
 
             <TextView
                 android:id="@+id/pro_army"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
@@ -185,12 +226,14 @@
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/detail_army"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/pro_origo" />
 
             <TextView
                 android:id="@+id/pro_introduction"
-                android:layout_width="160dp"
+                android:layout_width="330dp"
                 android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
@@ -198,8 +241,314 @@
                 android:text="@string/introduction"
                 android:textColor="@color/colorwhite"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/detail_name"
-                app:layout_constraintTop_toBottomOf="@+id/detail_imageframe" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_skillv" />
+
+            <TextView
+                android:id="@+id/pro_stre"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/stre"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_date"
+                app:layout_constraintStart_toStartOf="@+id/pro_date"
+                app:layout_constraintTop_toBottomOf="@+id/pro_date" />
+
+            <TextView
+                android:id="@+id/detail_stre"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_stre"
+                app:layout_constraintTop_toBottomOf="@+id/detail_date" />
+
+            <ImageView
+                android:id="@+id/detail_strelv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_stre"
+                app:layout_constraintTop_toBottomOf="@+id/detail_date"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_strelvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_strelv"
+                app:layout_constraintStart_toStartOf="@+id/detail_strelv"
+                app:layout_constraintTop_toTopOf="@+id/detail_strelv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_strelv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/pro_endu"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/endu"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_stre"
+                app:layout_constraintStart_toStartOf="@+id/pro_stre"
+                app:layout_constraintTop_toBottomOf="@+id/pro_stre"  />
+
+            <TextView
+                android:id="@+id/detail_endu"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_endu"
+                app:layout_constraintTop_toBottomOf="@+id/detail_stre"  />
+
+            <ImageView
+                android:id="@+id/detail_endulv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_endu"
+                app:layout_constraintTop_toBottomOf="@+id/detail_stre"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_endulvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_endulv"
+                app:layout_constraintStart_toStartOf="@+id/detail_endulv"
+                app:layout_constraintTop_toTopOf="@+id/detail_endulv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_endulv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/pro_agil"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/agil"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_endu"
+                app:layout_constraintStart_toStartOf="@+id/pro_endu"
+                app:layout_constraintTop_toBottomOf="@+id/pro_endu"  />
+
+            <TextView
+                android:id="@+id/detail_agil"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_agil"
+                app:layout_constraintTop_toBottomOf="@+id/detail_endu"  />
+
+            <ImageView
+                android:id="@+id/detail_agillv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_agil"
+                app:layout_constraintTop_toBottomOf="@+id/detail_endulv"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_agillvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_agillv"
+                app:layout_constraintStart_toStartOf="@+id/detail_agillv"
+                app:layout_constraintTop_toTopOf="@+id/detail_agillv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_agillv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/pro_magi"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/magi"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_agil"
+                app:layout_constraintStart_toStartOf="@+id/pro_agil"
+                app:layout_constraintTop_toBottomOf="@+id/pro_agil"  />
+
+            <TextView
+                android:id="@+id/detail_magi"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_magi"
+                app:layout_constraintTop_toBottomOf="@+id/detail_agil"  />
+
+            <ImageView
+                android:id="@+id/detail_magilv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_magi"
+                app:layout_constraintTop_toBottomOf="@+id/detail_agillv"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_magilvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_magilv"
+                app:layout_constraintStart_toStartOf="@+id/detail_magilv"
+                app:layout_constraintTop_toTopOf="@+id/detail_magilv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_magilv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/pro_luck"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/luck"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_magi"
+                app:layout_constraintStart_toStartOf="@+id/pro_magi"
+                app:layout_constraintTop_toBottomOf="@+id/pro_magi"  />
+
+            <TextView
+                android:id="@+id/detail_luck"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_luck"
+                app:layout_constraintTop_toBottomOf="@+id/detail_magi"  />
+
+            <ImageView
+                android:id="@+id/detail_lucklv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_luck"
+                app:layout_constraintTop_toBottomOf="@+id/detail_magilv"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_lucklvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_lucklv"
+                app:layout_constraintStart_toStartOf="@+id/detail_lucklv"
+                app:layout_constraintTop_toTopOf="@+id/detail_lucklv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_lucklv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/pro_skil"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
+                android:text="@string/sikl"
+                android:textColor="@color/colorwhite"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/pro_luck"
+                app:layout_constraintStart_toStartOf="@+id/pro_luck"
+                app:layout_constraintTop_toBottomOf="@+id/pro_luck" />
+
+            <TextView
+                android:id="@+id/detail_skil"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
+                android:gravity="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/pro_skil"
+                app:layout_constraintTop_toBottomOf="@+id/detail_luck"  />
+
+            <ImageView
+                android:id="@+id/detail_skillv"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/detail_skil"
+                app:layout_constraintTop_toBottomOf="@+id/detail_lucklv"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/detail_skillvframe"
+                android:layout_width="190dp"
+                android:layout_height="35dp"
+                android:background="@drawable/detailimagestroke"
+                app:layout_constraintEnd_toEndOf="@+id/detail_skillv"
+                app:layout_constraintStart_toStartOf="@+id/detail_skillv"
+                app:layout_constraintTop_toTopOf="@+id/detail_skillv"
+                app:layout_constraintBottom_toBottomOf="@+id/detail_skillv"
+                tools:ignore="ContentDescription" />
+
+            <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/guideline2"
+                app:layout_constraintGuide_percent="0.5"
+                android:orientation="vertical" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

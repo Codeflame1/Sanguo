@@ -53,4 +53,28 @@ public class SpinnerSelect {
         }
     }
 
+    static int getLevel(String string) {
+        switch (string){
+            case "E":
+                return 0;
+            case "D":
+                return 1;
+            case "C":
+                return 2;
+            case "B":
+                return 3;
+            case "A":
+                return 4;
+            case "A+":
+                return 5;
+            case "A++":
+                return 6;
+            case "A+++":
+                return 7;
+            case "EX":
+                return 8;
+        }
+        return 0;
+    }
+
 }

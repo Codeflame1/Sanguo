@@ -32,6 +32,12 @@ public class AddCharacter extends AppCompatActivity{
     private EditText madd_origo;
     private EditText madd_army;
     private EditText madd_introduction;
+    private Spinner add_stre;
+    private Spinner add_endu;
+    private Spinner add_agil;
+    private Spinner add_magi;
+    private Spinner add_luck;
+    private Spinner add_skil;
     public String str;
     public String str1;
 //    public String filePath;
@@ -60,6 +66,12 @@ public class AddCharacter extends AppCompatActivity{
         madd_origo = add_origo.getEditText();
         madd_army = add_army.getEditText();
         madd_introduction = add_introduction.getEditText();
+        add_stre = findViewById(R.id.add_stre);
+        add_endu = findViewById(R.id.add_endu);
+        add_agil = findViewById(R.id.add_agil);
+        add_magi = findViewById(R.id.add_magi);
+        add_luck = findViewById(R.id.add_luck);
+        add_skil = findViewById(R.id.add_skil);
         str = (String) add_imagename.getSelectedItem();
         str1 = (String) add_job.getSelectedItem();
 //        filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/a.png";
@@ -113,6 +125,12 @@ public class AddCharacter extends AppCompatActivity{
                 String origo = madd_origo.getText().toString().trim();
                 String army = madd_army.getText().toString().trim();
                 String introduction = madd_introduction.getText().toString().trim();
+                String stre = (String)add_stre.getSelectedItem();
+                String endu = (String)add_endu.getSelectedItem();
+                String agil = (String)add_agil.getSelectedItem();
+                String magi = (String)add_magi.getSelectedItem();
+                String luck = (String)add_luck.getSelectedItem();
+                String skil = (String)add_skil.getSelectedItem();
 
                 add_name.setErrorEnabled(false);
                 add_birth.setErrorEnabled(false);
@@ -140,7 +158,7 @@ public class AddCharacter extends AppCompatActivity{
                     add_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(AddCharacter.this).insert(image, name, job, sex, birth, death, origo, army, introduction);
+                    MyDataBase.getInstances(AddCharacter.this).insert(image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
                     finish();
                 }
             }

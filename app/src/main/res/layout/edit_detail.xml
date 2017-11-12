@@ -58,7 +58,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/detailproshape"
                 android:gravity="center"
-                android:text="@string/property_job"
+                android:text="@string/job"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_name"
+                android:text="@string/name"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +129,7 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_sex"
+                android:text="@string/sex"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +164,7 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_date_birth"
+                android:text="@string/date_birth"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -199,7 +199,7 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_date_death"
+                android:text="@string/date_death"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,7 +234,7 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_origo"
+                android:text="@string/origo"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -269,11 +269,173 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_army"
+                android:text="@string/army"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_origo"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_stre"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_stre"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_army"/>
+
+            <TextView
+                android:id="@+id/edit_pro_stre"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/stre"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_army"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_endu"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_endu"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_stre"/>
+
+            <TextView
+                android:id="@+id/edit_pro_endu"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/endu"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_stre"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_agil"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_agil"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_endu"/>
+
+            <TextView
+                android:id="@+id/edit_pro_agil"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/agil"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_endu"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_magi"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_magi"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_agil"/>
+
+            <TextView
+                android:id="@+id/edit_pro_magi"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/magi"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_agil"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_luck"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_luck"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_magi"/>
+
+            <TextView
+                android:id="@+id/edit_pro_luck"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/luck"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_magi"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/edit_skil"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/level"
+                android:background="@drawable/detailtexthape"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edit_pro_skil"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_luck"/>
+
+            <TextView
+                android:id="@+id/edit_pro_skil"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
+                android:text="@string/sikl"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_luck"
                 tools:ignore="MissingConstraints" />
 
             <android.support.design.widget.TextInputLayout
@@ -308,12 +470,12 @@
                 android:background="@drawable/detailproshape"
                 android:ems="5"
                 android:gravity="center"
-                android:text="@string/property_introduction"
+                android:text="@string/introduction"
                 android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_army"
+                app:layout_constraintTop_toBottomOf="@+id/edit_skil"
                 tools:ignore="MissingConstraints" />
 
             <Button

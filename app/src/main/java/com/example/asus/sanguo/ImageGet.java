@@ -7,10 +7,26 @@ public class ImageGet {
     }
     static int getImage(String string){
         switch (string){
-            case "1":
-                return R.mipmap.ic_launcher;
-            case "2":
+            case "zhaoyun":
                 return R.mipmap.zhaoyun;
+            case "huangyueying":
+                return R.mipmap.huangyueying;
+            case "sunshangxiang":
+                return R.mipmap.sunshangxiang;
+            case "caiwenji":
+                return R.mipmap.caiwenji;
+            case "diaochan":
+                return R.mipmap.diaochan;
+            case "zhenfu":
+                return R.mipmap.zhenfu;
+            case "caocao":
+                return R.mipmap.caocao;
+            case "lvbu":
+                return R.mipmap.lvbu;
+            case "zhugeliang":
+                return R.mipmap.zhugeliang;
+            case "zhouyu":
+                return R.mipmap.zhouyu;
         }
         return 0;
     }
@@ -53,6 +69,30 @@ public class ImageGet {
                 return R.mipmap.berserker;
             case "ruler":
                 return R.mipmap.ruler;
+        }
+        return 0;
+    }
+
+    static int getLevelImage(String string){
+        switch (string){
+            case "E":
+                return R.mipmap.levele;
+            case "D":
+                return R.mipmap.leveld;
+            case "C":
+                return R.mipmap.levelc;
+            case "B":
+                return R.mipmap.levelb;
+            case "A":
+                return R.mipmap.levela;
+            case "A+":
+                return R.mipmap.levela;
+            case "A++":
+                return R.mipmap.levela;
+            case "A+++":
+                return R.mipmap.levela;
+            case "EX":
+                return R.mipmap.levelex;
         }
         return 0;
     }

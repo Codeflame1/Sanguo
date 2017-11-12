@@ -18,6 +18,12 @@
     <string name="origo">籍贯</string>
     <string name="army">主效势力</string>
     <string name="introduction">详情</string>
+    <string name="stre">筋力</string>
+    <string name="endu">耐久</string>
+    <string name="agil">敏捷</string>
+    <string name="magi">魔力</string>
+    <string name="luck">幸运</string>
+    <string name="sikl">宝具</string>
     <string name="text_error_empty">不能为空。</string>
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
@@ -30,8 +36,16 @@
         <item>女</item>
     </string-array>
     <string-array name="image">
-        <item>1</item>
-        <item>2</item>
+        <item>zhaoyun</item>
+        <item>huangyueying</item>
+        <item>sunshangxiang</item>
+        <item>caiwenji</item>
+        <item>diaochan</item>
+        <item>zhenfu</item>
+        <item>caocao</item>
+        <item>lvbu</item>
+        <item>zhugeliang</item>
+        <item>zhouyu</item>
     </string-array>
     <string-array name="fatejob">
         <item>saber</item>
@@ -42,5 +56,16 @@
         <item>assassin</item>
         <item>berserker</item>
         <item>ruler</item>
+    </string-array>
+    <string-array name="level">
+        <item>E</item>
+        <item>D</item>
+        <item>C</item>
+        <item>B</item>
+        <item>A</item>
+        <item>A+</item>
+        <item>A++</item>
+        <item>A+++</item>
+        <item>EX</item>
     </string-array>
 </resources>
