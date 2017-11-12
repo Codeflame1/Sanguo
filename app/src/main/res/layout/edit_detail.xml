@@ -9,6 +9,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background"
             tools:context="com.example.asus.sanguo.EditCharacter">
 
             <Spinner
@@ -19,6 +20,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:entries="@array/image"
+                android:background="@drawable/detailtexthape"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +36,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/back" />
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/edit_imageframe"
@@ -46,26 +48,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/assassinbig" />
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/edit_pro_job"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:gravity="center"
                 android:text="@string/property_job"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_image_name" />
 
             <Spinner
                 android:id="@+id/edit_job"
-                android:layout_width="260dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
                 android:entries="@array/fatejob"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_job"
                 app:layout_constraintTop_toBottomOf="@+id/edit_image_name" />
@@ -74,60 +79,59 @@
                 android:id="@+id/edit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_name"
                 app:layout_constraintTop_toBottomOf="@+id/edit_job">
 
                 <EditText
-                    android:layout_width="260dp"
+                    android:layout_width="220dp"
                     android:layout_height="40dp"
-                    android:ems="20"
                     android:inputType="text"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_name"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_job"
                 tools:ignore="MissingConstraints" />
 
-            <android.support.design.widget.TextInputLayout
+            <Spinner
                 android:id="@+id/edit_sex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:entries="@array/sexselect"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_sex"
-                app:layout_constraintTop_toBottomOf="@+id/edit_pro_name">
-
-                <EditText
-                    android:layout_width="260dp"
-                    android:layout_height="40dp"
-                    android:ems="20"
-                    android:inputType="text"
-                    android:textSize="18sp"
-                    tools:ignore="LabelFor" />
-            </android.support.design.widget.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_name"/>
 
             <TextView
                 android:id="@+id/edit_pro_sex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_sex"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_name"
                 tools:ignore="MissingConstraints" />
@@ -136,7 +140,8 @@
                 android:id="@+id/edit_datebirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_datebirth"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_sex">
@@ -146,19 +151,22 @@
                     android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_datebirth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_date_birth"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_sex"
                 tools:ignore="MissingConstraints" />
@@ -167,7 +175,8 @@
                 android:id="@+id/edit_datedeath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_datedeath"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_datebirth">
@@ -177,19 +186,22 @@
                     android:layout_height="40dp"
                     android:ems="20"
                     android:inputType="number"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_datedeath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_date_death"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_datebirth"
                 tools:ignore="MissingConstraints" />
@@ -198,7 +210,8 @@
                 android:id="@+id/edit_origo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_origo"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_datedeath">
@@ -207,20 +220,23 @@
                     android:layout_width="220dp"
                     android:layout_height="40dp"
                     android:ems="20"
-                    android:inputType="number"
-                    android:textSize="18sp"
+                    android:inputType="text"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_origo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_origo"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_datedeath"
                 tools:ignore="MissingConstraints" />
@@ -229,7 +245,8 @@
                 android:id="@+id/edit_army"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/edit_pro_army"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_origo">
@@ -238,20 +255,23 @@
                     android:layout_width="220dp"
                     android:layout_height="40dp"
                     android:ems="20"
-                    android:inputType="number"
-                    android:textSize="18sp"
+                    android:inputType="text"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_army"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_army"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_pro_origo"
                 tools:ignore="MissingConstraints" />
@@ -260,35 +280,40 @@
                 android:id="@+id/edit_introduction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/detailtexthape"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/edit_pro_introduction"
-                app:layout_constraintTop_toBottomOf="@+id/edit_pro_army">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_pro_introduction">
 
                 <EditText
-                    android:layout_width="220dp"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:ems="20"
                     android:gravity="top"
-                    android:minLines="8"
-                    android:maxLines="10"
-                    android:scrollbars="vertical"
                     android:inputType="textMultiLine"
-                    android:textSize="18sp"
+                    android:maxLines="10"
+                    android:minLines="8"
+                    android:scrollbars="vertical"
+                    android:textSize="14sp"
                     tools:ignore="LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/edit_pro_introduction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_width="320dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/detailproshape"
+                android:ems="5"
+                android:gravity="center"
                 android:text="@string/property_introduction"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textColor="@color/colorwhite"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_pro_army"
+                app:layout_constraintTop_toBottomOf="@+id/edit_army"
                 tools:ignore="MissingConstraints" />
 
             <Button
@@ -298,8 +323,9 @@
                 android:layout_marginBottom="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/buttonshape"
+                android:background="@drawable/detailbuttonshape"
                 android:text="@string/confirm"
+                android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/edit_buttoncancel"
@@ -314,8 +340,9 @@
                 android:layout_marginBottom="50dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/buttonshape"
+                android:background="@drawable/detailbuttonshape"
                 android:text="@string/cancel"
+                android:textColor="@color/colorwhite"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

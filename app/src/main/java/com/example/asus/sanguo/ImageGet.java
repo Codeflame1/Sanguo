@@ -11,9 +11,8 @@ public class ImageGet {
                 return R.mipmap.ic_launcher;
             case "2":
                 return R.mipmap.zhaoyun;
-            default:
-                return R.mipmap.back;
         }
+        return 0;
     }
     static int getBigFrame(String string){
         switch (string){
@@ -33,9 +32,8 @@ public class ImageGet {
                 return R.mipmap.berserkerbig;
             case "ruler":
                 return R.mipmap.rulerbig;
-            default:
-                return R.mipmap.rulerbig;
         }
+        return 0;
     }
     static int getSmallFrame(String string){
         switch (string){
@@ -55,8 +53,7 @@ public class ImageGet {
                 return R.mipmap.berserker;
             case "ruler":
                 return R.mipmap.ruler;
-            default:
-                return R.mipmap.ruler;
         }
+        return 0;
     }
 }

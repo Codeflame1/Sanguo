@@ -22,14 +22,13 @@ public class EditCharacter extends AppCompatActivity {
     private Spinner edit_job;
     private ImageView edit_jobframe;
     private TextInputLayout edit_name;
-    private TextInputLayout edit_sex;
+    private Spinner edit_sex;
     private TextInputLayout edit_birth;
     private TextInputLayout edit_death;
     private TextInputLayout edit_origo;
     private TextInputLayout edit_army;
     private TextInputLayout edit_introduction;
     private EditText medit_name;
-    private EditText medit_sex;
     private EditText medit_birth;
     private EditText medit_death;
     private EditText medit_origo;
@@ -67,16 +66,18 @@ public class EditCharacter extends AppCompatActivity {
         edit_army = findViewById(R.id.edit_army);
         edit_introduction = findViewById(R.id.edit_introduction);
         medit_name = edit_name.getEditText();
-        medit_sex = edit_sex.getEditText();
         medit_birth = edit_birth.getEditText();
         medit_death = edit_death.getEditText();
         medit_origo = edit_origo.getEditText();
         medit_army = edit_army.getEditText();
         medit_introduction = edit_introduction.getEditText();
+
         edit_image.setImageResource(ImageGet.getImage(image));
         edit_jobframe.setImageResource(ImageGet.getBigFrame(job));
+        edit_imagename.setSelection(SpinnerSelect.getImageSelect(image));
+        edit_job.setSelection(SpinnerSelect.getJobSelect(job));
         medit_name.setText(name);
-        medit_sex.setText(sex);
+        edit_sex.setSelection(SpinnerSelect.getSex(sex));
         medit_birth.setText(birth);
         medit_death.setText(death);
         medit_origo.setText(origo);
@@ -112,12 +113,12 @@ public class EditCharacter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 str1 = (String) edit_job.getSelectedItem();
-                edit_jobframe.setImageResource(ImageGet.getImage(str1));
+                edit_jobframe.setImageResource(ImageGet.getBigFrame(str1));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                edit_jobframe.setImageResource(ImageGet.getImage(""));
+                edit_jobframe.setImageResource(ImageGet.getBigFrame(""));
             }
         });
 
@@ -128,7 +129,7 @@ public class EditCharacter extends AppCompatActivity {
                 String image = (String)edit_imagename.getSelectedItem();
                 String name = medit_name.getText().toString().trim();
                 String job = (String)edit_job.getSelectedItem();
-                String sex = medit_sex.getText().toString().trim();
+                String sex = (String)edit_sex.getSelectedItem();
                 String birth = medit_birth.getText().toString().trim();
                 String death = medit_death.getText().toString().trim();
                 String origo = medit_origo.getText().toString().trim();
@@ -136,7 +137,6 @@ public class EditCharacter extends AppCompatActivity {
                 String introduction = medit_introduction.getText().toString().trim();
 
                 edit_name.setErrorEnabled(false);
-                edit_sex.setErrorEnabled(false);
                 edit_birth.setErrorEnabled(false);
                 edit_death.setErrorEnabled(false);
                 edit_origo.setErrorEnabled(false);
@@ -145,9 +145,6 @@ public class EditCharacter extends AppCompatActivity {
                 if (TextUtils.isEmpty(name)) {
                     edit_name.setErrorEnabled(true);
                     edit_name.setError(getString(R.string.name) + getString(R.string.text_error_empty));
-                } else if (TextUtils.isEmpty(sex)) {
-                    edit_sex.setErrorEnabled(true);
-                    edit_sex.setError(getString(R.string.sex) + getString(R.string.text_error_empty));
                 } else if (TextUtils.isEmpty(birth)) {
                     edit_birth.setErrorEnabled(true);
                     edit_birth.setError(getString(R.string.date_birth) + getString(R.string.text_error_empty));
@@ -165,7 +162,7 @@ public class EditCharacter extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, job, name, sex, birth, death, origo, army, introduction);
+                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army, introduction);
                     finish();
                 }
             }

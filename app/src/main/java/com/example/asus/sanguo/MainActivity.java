@@ -1,6 +1,5 @@
 package com.example.asus.sanguo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.design.widget.TextInputLayout;
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mListAdd;
     private ImageButton searchButton;
     private EditText msearch;
+    private AlertDialog mdialog;
 
 
     @Override
@@ -75,26 +75,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
 //                //删除是要拿到当前行的id值才能删除当前行,下面的操作都是点击某个item拿到对应item的id字段
 //                //拿到当前position的 item的所有数据
-//                //返回的数据格式为{name=段炼, age=25, sex=男, id=12, death=吃饭。睡觉}
-//                Object itemAtPosition = mListView.getItemAtPosition(position);
-//                Log.e("duanlian", itemAtPosition+"");
-//                //转换成String
-//                String s = itemAtPosition.toString();
-//                //如果字符串包含"id"字段
-//                if (s.contains("id")) {
-//                    //拿到id字段是处于字符串第几个位置
-//                    int a = s.indexOf("id");
-//                    //"id"字段后面是"death"字段,拿到death字段的位置
-//                    int b = s.indexOf("death");
-//                    //切割字符串{name=段炼, age=25, sex=男, id=12, death=吃饭。睡觉}
-//                    //从i开始+3个正好是id开始的地方,death-2正好是id结束的位置减去了一个h和一个逗号
-//                    String substring = s.substring(a + 3, b-2);
-//                    //得到id后转换成int类型
-//                    id = Integer.parseInt(substring);
-//                }
-//                //将得到id传入到需要的方法中
-//                showMyDialog(id, position);
-                //得到对应item里面的id
                 Object id = list.get(position).get("id");
                 int i = Integer.parseInt(id.toString());
                 String image = list.get(position).get("image").toString();
@@ -146,40 +126,47 @@ public class MainActivity extends AppCompatActivity {
      * 点击显示对话框选择修改或者是删除
      */
     private void showMyDialog(final int id, final String image, final String name, final String job, final String sex, final String birth, final String death, final String origo, final String army, final String introduction) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //设置一个标题
-        builder.setTitle("请选择");
-        //给dialog设置item
-        builder.setItems(new String[]{"修改", "删除"}, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int position) {
-                switch (position) {
-                    case 0://修改
-                        Intent intent = new Intent(MainActivity.this, EditCharacter.class);
-                        intent.putExtra("id", id);
-                        intent.putExtra("image", image);
-                        intent.putExtra("name", name);
-                        intent.putExtra("job", job);
-                        intent.putExtra("sex", sex);
-                        intent.putExtra("birth", birth);
-                        intent.putExtra("death", death);
-                        intent.putExtra("origo", origo);
-                        intent.putExtra("army", army);
-                        intent.putExtra("introduction", introduction);
-                        startActivityForResult(intent,0);
-                        break;
-                    case 1://删除
-                        MyDataBase.getInstances(MainActivity.this).delete(id);
-                        //重新查询,然后显示
-                        List<Map<String, Object>> data = getData("");
-                        adapter.refreshList(data);
-                        Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-                        break;
-                }
 
+        mdialog = new AlertDialog.Builder(MainActivity.this).create();
+        mdialog.show();
+        mdialog.getWindow().setContentView(R.layout.alertdialog);
+        mdialog.getWindow().findViewById(R.id.dia_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EditCharacter.class);
+                intent.putExtra("id", id);
+                intent.putExtra("image", image);
+                intent.putExtra("name", name);
+                intent.putExtra("job", job);
+                intent.putExtra("sex", sex);
+                intent.putExtra("birth", birth);
+                intent.putExtra("death", death);
+                intent.putExtra("origo", origo);
+                intent.putExtra("army", army);
+                intent.putExtra("introduction", introduction);
+                startActivityForResult(intent,0);
+                mdialog.dismiss();
             }
         });
-        builder.show();
+
+        mdialog.getWindow().findViewById(R.id.dia_delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDataBase.getInstances(MainActivity.this).delete(id);
+                //重新查询,然后显示
+                List<Map<String, Object>> data = getData("");
+                adapter.refreshList(data);
+                Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                mdialog.dismiss();
+        }
+        });
+        //设置一个标题
+        mdialog.getWindow().findViewById(R.id.dia_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mdialog.dismiss();
+            }
+        });
     }
 
     /**

@@ -9,6 +9,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background"
             tools:context="com.example.asus.sanguo.MainActivity">
 
             <ImageView
@@ -112,11 +113,11 @@
 
             <ImageButton
                 android:id="@+id/back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@mipmap/back"
+                android:background="@mipmap/back2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />

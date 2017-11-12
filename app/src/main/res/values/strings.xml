@@ -22,14 +22,21 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="add_character_button">+</string>
+    <string name="please_select">请 选 择</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string-array name="sexselect">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
     <string-array name="image">
         <item>1</item>
         <item>2</item>
     </string-array>
     <string-array name="fatejob">
         <item>saber</item>
-        <item>lancer</item>
         <item>archer</item>
+        <item>lancer</item>
         <item>rider</item>
         <item>caster</item>
         <item>assassin</item>

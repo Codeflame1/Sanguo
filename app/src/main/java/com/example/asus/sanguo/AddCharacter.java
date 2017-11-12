@@ -20,14 +20,13 @@ public class AddCharacter extends AppCompatActivity{
     private Spinner add_job;
     private ImageView add_jobframe;
     private TextInputLayout add_name;
-    private TextInputLayout add_sex;
+    private Spinner add_sex;
     private TextInputLayout add_birth;
     private TextInputLayout add_death;
     private TextInputLayout add_origo;
     private TextInputLayout add_army;
     private TextInputLayout add_introduction;
     private EditText madd_name;
-    private EditText madd_sex;
     private EditText madd_birth;
     private EditText madd_death;
     private EditText madd_origo;
@@ -56,7 +55,6 @@ public class AddCharacter extends AppCompatActivity{
         add_army = findViewById(R.id.add_army);
         add_introduction = findViewById(R.id.add_introduction);
         madd_name = add_name.getEditText();
-        madd_sex = add_sex.getEditText();
         madd_birth = add_birth.getEditText();
         madd_death = add_death.getEditText();
         madd_origo = add_origo.getEditText();
@@ -93,12 +91,12 @@ public class AddCharacter extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 str1 = (String) add_job.getSelectedItem();
-                add_jobframe.setImageResource(ImageGet.getImage(str1));
+                add_jobframe.setImageResource(ImageGet.getBigFrame(str1));
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                add_jobframe.setImageResource(ImageGet.getImage(""));
+                add_jobframe.setImageResource(ImageGet.getBigFrame(""));
             }
         });
 
@@ -109,7 +107,7 @@ public class AddCharacter extends AppCompatActivity{
                 String image = (String) add_imagename.getSelectedItem();
                 String name = madd_name.getText().toString().trim();
                 String job = (String)add_job.getSelectedItem();
-                String sex = madd_sex.getText().toString().trim();
+                String sex = (String)add_sex.getSelectedItem();
                 String birth = madd_birth.getText().toString().trim();
                 String death = madd_death.getText().toString().trim();
                 String origo = madd_origo.getText().toString().trim();
@@ -117,7 +115,6 @@ public class AddCharacter extends AppCompatActivity{
                 String introduction = madd_introduction.getText().toString().trim();
 
                 add_name.setErrorEnabled(false);
-                add_sex.setErrorEnabled(false);
                 add_birth.setErrorEnabled(false);
                 add_death.setErrorEnabled(false);
                 add_origo.setErrorEnabled(false);
@@ -126,9 +123,6 @@ public class AddCharacter extends AppCompatActivity{
                 if (TextUtils.isEmpty(name)) {
                     add_name.setErrorEnabled(true);
                     add_name.setError(getString(R.string.name) + getString(R.string.text_error_empty));
-                } else if (TextUtils.isEmpty(sex)) {
-                    add_sex.setErrorEnabled(true);
-                    add_sex.setError(getString(R.string.sex) + getString(R.string.text_error_empty));
                 } else if (TextUtils.isEmpty(birth)) {
                     add_birth.setErrorEnabled(true);
                     add_birth.setError(getString(R.string.date_birth) + getString(R.string.text_error_empty));
