@@ -45,6 +45,7 @@ public class MyListViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             view = LayoutInflater.from(context).inflate(R.layout.list_view, null);
             holder.image = view.findViewById(R.id.list_image);
+            holder.frame = view.findViewById(R.id.list_frame);
             holder.name = view.findViewById(R.id.list_name);
             holder.date = view.findViewById(R.id.list_date);
             view.setTag(holder);
@@ -52,6 +53,7 @@ public class MyListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         holder.image.setImageResource(ImageGet.getImage(list.get(i).get("image").toString()));
+        holder.frame.setImageResource(ImageGet.getSmallFrame(list.get(i).get("job").toString()));
         holder.name.setText(list.get(i).get("name").toString());
         holder.date.setText(list.get(i).get("birth").toString()+"-"+list.get(i).get("death").toString());
 
@@ -59,6 +61,7 @@ public class MyListViewAdapter extends BaseAdapter {
     }
     static class ViewHolder{
         ImageView image;
+        ImageView frame;
         TextView name;
         TextView date;
     }

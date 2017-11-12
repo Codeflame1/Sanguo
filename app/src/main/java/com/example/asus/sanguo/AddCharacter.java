@@ -17,6 +17,8 @@ public class AddCharacter extends AppCompatActivity{
 
     private ImageView add_image;
     private Spinner add_imagename;
+    private Spinner add_job;
+    private ImageView add_jobframe;
     private TextInputLayout add_name;
     private TextInputLayout add_sex;
     private TextInputLayout add_birth;
@@ -31,7 +33,8 @@ public class AddCharacter extends AppCompatActivity{
     private EditText madd_origo;
     private EditText madd_army;
     private EditText madd_introduction;
-    private String str;
+    public String str;
+    public String str1;
 //    public String filePath;
 
     @Override
@@ -43,6 +46,8 @@ public class AddCharacter extends AppCompatActivity{
         Button add_cancel = findViewById(R.id.add_buttoncancel);
         add_imagename = findViewById(R.id.add_image_name);
         add_image = findViewById(R.id.add_image);
+        add_job = findViewById(R.id.add_job);
+        add_jobframe = findViewById(R.id.add_imageframe);
         add_name = findViewById(R.id.add_name);
         add_sex = findViewById(R.id.add_sex);
         add_birth = findViewById(R.id.add_datebirth);
@@ -57,7 +62,8 @@ public class AddCharacter extends AppCompatActivity{
         madd_origo = add_origo.getEditText();
         madd_army = add_army.getEditText();
         madd_introduction = add_introduction.getEditText();
-        str = (String)add_imagename.getSelectedItem();
+        str = (String) add_imagename.getSelectedItem();
+        str1 = (String) add_job.getSelectedItem();
 //        filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/a.png";
 
 //        add_image.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +89,26 @@ public class AddCharacter extends AppCompatActivity{
             }
         });
 
+        add_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                str1 = (String) add_job.getSelectedItem();
+                add_jobframe.setImageResource(ImageGet.getImage(str1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                add_jobframe.setImageResource(ImageGet.getImage(""));
+            }
+        });
+
         add_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //拿到输入的数据
                 String image = (String) add_imagename.getSelectedItem();
                 String name = madd_name.getText().toString().trim();
+                String job = (String)add_job.getSelectedItem();
                 String sex = madd_sex.getText().toString().trim();
                 String birth = madd_birth.getText().toString().trim();
                 String death = madd_death.getText().toString().trim();
@@ -126,7 +146,7 @@ public class AddCharacter extends AppCompatActivity{
                     add_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(AddCharacter.this).insert(image, name, sex, birth, death, origo, army, introduction);
+                    MyDataBase.getInstances(AddCharacter.this).insert(image, name, job, sex, birth, death, origo, army, introduction);
                     finish();
                 }
             }

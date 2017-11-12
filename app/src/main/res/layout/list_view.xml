@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/listlayout"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="75dp"
     tools:context="com.example.asus.sanguo.MainActivity">
 
     <ImageView
@@ -13,10 +13,23 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="15dp"
+        android:background="@mipmap/zhaoyun"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/list_frame"
+        android:layout_width="62dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/archer" />
 
     <TextView
         android:id="@+id/list_name"

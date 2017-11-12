@@ -15,4 +15,48 @@ public class ImageGet {
                 return R.mipmap.back;
         }
     }
+    static int getBigFrame(String string){
+        switch (string){
+            case "saber":
+                return R.mipmap.saberbig;
+            case "archer":
+                return R.mipmap.archerbig;
+            case "lancer":
+                return R.mipmap.lancerbig;
+            case "rider":
+                return R.mipmap.riderbig;
+            case "caster":
+                return R.mipmap.casterbig;
+            case "assassin":
+                return R.mipmap.assassinbig;
+            case "berserker":
+                return R.mipmap.berserkerbig;
+            case "ruler":
+                return R.mipmap.rulerbig;
+            default:
+                return R.mipmap.rulerbig;
+        }
+    }
+    static int getSmallFrame(String string){
+        switch (string){
+            case "saber":
+                return R.mipmap.saber;
+            case "archer":
+                return R.mipmap.archer;
+            case "lancer":
+                return R.mipmap.lancer;
+            case "rider":
+                return R.mipmap.rider;
+            case "caster":
+                return R.mipmap.caster;
+            case "assassin":
+                return R.mipmap.assassin;
+            case "berserker":
+                return R.mipmap.berserker;
+            case "ruler":
+                return R.mipmap.ruler;
+            default:
+                return R.mipmap.ruler;
+        }
+    }
 }

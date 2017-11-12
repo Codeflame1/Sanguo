@@ -39,7 +39,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //这个有个坑,create table"+" " + TABLE_NAME 中间一定要加空格,别问为什么,我也不知道,不加就语法错误,吐血
-        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,sex text,birth text,death text,origo text,army text,introduction text);");
+        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,job text,sex text,birth text,death text,origo text,army text,introduction text);");
 
     }
 
@@ -65,7 +65,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个用来插入数据的方法
      */
-    void insert(String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
+    void insert(String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*
@@ -76,6 +76,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("image", image);
         values.put("name", name);
+        values.put("job", job);
         values.put("sex", sex);
         values.put("birth", birth);
         values.put("death", death);
@@ -120,7 +121,7 @@ public class MyDataBase extends SQLiteOpenHelper {
 
     Cursor searchQuery(String s, String type) {
         SQLiteDatabase database = getReadableDatabase();
-        String[] clumns = {"id", "image", "name", "sex", "birth", "death", "origo", "army" ,"introduction"};
+        String[] clumns = {"id", "image", "name", "job", "sex", "birth", "death", "origo", "army" ,"introduction"};
         String selection = type + "=?";
         String[] Args = {s};
         return database.query("sanguo", clumns, selection, Args, null, null, null);
@@ -129,15 +130,15 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个删除数据的方法,传入的参数越多,删除时越精确的找到要删除的哪一行
      */
-    public void delete(int id, String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
+    public void delete(int id, String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
         /*
         删除的条件,当id = 传入的参数id时,sex = 传入的参数sex时,age = 传入的age,hobby = 传入的hobby时
         当条件都满足时才删除这行数据,一个条件不满足就删除失败
          */
-        String where = "id=? and image ? and name = ? and sex = ? and birth = ? and death = ? and origo = ? and army = ? and introduction = ?";
+        String where = "id=? and image ? and name = ? and job = ? and sex = ? and birth = ? and death = ? and origo = ? and army = ? and introduction = ?";
         //删除条件的参数
-        String[] whereArgs = {id + "", image, name, sex, birth, death, origo, army ,introduction};
+        String[] whereArgs = {id + "", image, name, job, sex, birth, death, origo, army ,introduction};
         database.delete(TABLE_NAME, where, whereArgs);
         database.close();
     }
@@ -157,7 +158,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个修改数据的方法
      */
-    void updata(int id, String image, String name, String sex, String birth, String death, String origo, String army, String introduction) {
+    void updata(int id, String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
 //        update(String table,ContentValues values,String  whereClause, String[]  whereArgs)
         String where = "id = ?";
@@ -165,6 +166,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put("image",image);
         values.put("name", name);
+        values.put("job", job);
         values.put("sex", sex);
         values.put("birth", birth);
         values.put("death", death);

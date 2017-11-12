@@ -19,6 +19,8 @@ public class EditCharacter extends AppCompatActivity {
     private int id;
     private Spinner edit_imagename;
     private ImageView edit_image;
+    private Spinner edit_job;
+    private ImageView edit_jobframe;
     private TextInputLayout edit_name;
     private TextInputLayout edit_sex;
     private TextInputLayout edit_birth;
@@ -34,6 +36,7 @@ public class EditCharacter extends AppCompatActivity {
     private EditText medit_army;
     private EditText medit_introduction;
     public String str;
+    public String str1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class EditCharacter extends AppCompatActivity {
         setContentView(R.layout.edit_detail);
         id = getIntent().getIntExtra("id", 0);
         String name = getIntent().getStringExtra("name");
+        String job = getIntent().getStringExtra("job");
         String sex = getIntent().getStringExtra("sex");
         String birth = getIntent().getStringExtra("birth");
         String death = getIntent().getStringExtra("death");
@@ -53,6 +57,8 @@ public class EditCharacter extends AppCompatActivity {
         Button edit_cancel = findViewById(R.id.edit_buttoncancel);
         edit_imagename = findViewById(R.id.edit_image_name);
         edit_image = findViewById(R.id.edit_image);
+        edit_job = findViewById(R.id.edit_job);
+        edit_jobframe = findViewById(R.id.edit_imageframe);
         edit_name = findViewById(R.id.edit_name);
         edit_sex = findViewById(R.id.edit_sex);
         edit_birth = findViewById(R.id.edit_datebirth);
@@ -68,6 +74,7 @@ public class EditCharacter extends AppCompatActivity {
         medit_army = edit_army.getEditText();
         medit_introduction = edit_introduction.getEditText();
         edit_image.setImageResource(ImageGet.getImage(image));
+        edit_jobframe.setImageResource(ImageGet.getBigFrame(job));
         medit_name.setText(name);
         medit_sex.setText(sex);
         medit_birth.setText(birth);
@@ -76,6 +83,7 @@ public class EditCharacter extends AppCompatActivity {
         medit_army.setText(army);
         medit_introduction.setText(introduction);
         str = (String) edit_imagename.getSelectedItem();
+        str1 = (String) edit_job.getSelectedItem();
 
 //        edit_image.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -100,12 +108,26 @@ public class EditCharacter extends AppCompatActivity {
             }
         });
 
+        edit_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                str1 = (String) edit_job.getSelectedItem();
+                edit_jobframe.setImageResource(ImageGet.getImage(str1));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                edit_jobframe.setImageResource(ImageGet.getImage(""));
+            }
+        });
+
         edit_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //拿到输入的数据
                 String image = (String)edit_imagename.getSelectedItem();
                 String name = medit_name.getText().toString().trim();
+                String job = (String)edit_job.getSelectedItem();
                 String sex = medit_sex.getText().toString().trim();
                 String birth = medit_birth.getText().toString().trim();
                 String death = medit_death.getText().toString().trim();
@@ -143,7 +165,7 @@ public class EditCharacter extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, name, sex, birth, death, origo, army, introduction);
+                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, job, name, sex, birth, death, origo, army, introduction);
                     finish();
                 }
             }

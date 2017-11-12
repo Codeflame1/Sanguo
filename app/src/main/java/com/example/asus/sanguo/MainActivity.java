@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         TextInputLayout characterlistsearch = findViewById(R.id.characterlistsearch);
         searchButton = findViewById(R.id.characterlistsearchButton);
         msearch = characterlistsearch.getEditText();
-        MyDataBase.getInstances(MainActivity.this).insert("2", "赵云(子龙)","男","158","228","常山真定","蜀汉","    身长八尺，姿颜雄伟，蜀汉五虎上将之一。\n    汉末军阀混战，赵云受本郡推举，率领义从加入白马将军公孙瓒。期间结识了汉室皇亲刘备，但不久之后，因为兄长去世而离开。赵云离开公孙瓒大约七年左右的时间，在邺城与刘备相见，从此追随刘备。");
+        MyDataBase.getInstances(MainActivity.this).insert("2", "赵云(子龙)","lancer","男","158","228","常山真定","蜀汉","    身长八尺，姿颜雄伟，蜀汉五虎上将之一。\n    汉末军阀混战，赵云受本郡推举，率领义从加入白马将军公孙瓒。期间结识了汉室皇亲刘备，但不久之后，因为兄长去世而离开。赵云离开公孙瓒大约七年左右的时间，在邺城与刘备相见，从此追随刘备。");
         List<Map<String, Object>> data = getData("");
         adapter = new MyListViewAdapter(this, data);
         mListView.setAdapter(adapter);
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 int i = Integer.parseInt(id.toString());
                 String image = list.get(position).get("image").toString();
                 String name = list.get(position).get("name").toString();
+                String job = list.get(position).get("job").toString();
                 String sex = list.get(position).get("sex").toString();
                 String birth = list.get(position).get("birth").toString();
                 String death = list.get(position).get("death").toString();
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 String army = list.get(position).get("army").toString();
                 String introduction = list.get(position).get("introduction").toString();
                 //将得到id传入到需要的方法中
-                showMyDialog(i, image, name, sex, birth, death, origo, army, introduction);
+                showMyDialog(i, image, name, job, sex, birth, death, origo, army, introduction);
                 return true;
             }
         });
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 int i = Integer.parseInt(id.toString());
                 String image = list.get(position).get("image").toString();
                 String name = list.get(position).get("name").toString();
+                String job = list.get(position).get("job").toString();
                 String sex = list.get(position).get("sex").toString();
                 String birth = list.get(position).get("birth").toString();
                 String death = list.get(position).get("death").toString();
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("id", i);
                 intent.putExtra("image", image);
                 intent.putExtra("name", name);
+                intent.putExtra("job", job);
                 intent.putExtra("sex", sex);
                 intent.putExtra("birth", birth);
                 intent.putExtra("death", death);
@@ -142,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 点击显示对话框选择修改或者是删除
      */
-    private void showMyDialog(final int id, final String image, final String name, final String sex, final String birth, final String death, final String origo, final String army, final String introduction) {
+    private void showMyDialog(final int id, final String image, final String name, final String job, final String sex, final String birth, final String death, final String origo, final String army, final String introduction) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //设置一个标题
         builder.setTitle("请选择");
@@ -156,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("id", id);
                         intent.putExtra("image", image);
                         intent.putExtra("name", name);
+                        intent.putExtra("job", job);
                         intent.putExtra("sex", sex);
                         intent.putExtra("birth", birth);
                         intent.putExtra("death", death);
@@ -193,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
             do {
                 String image = query.getString(query.getColumnIndex("image"));
                 String name = query.getString(query.getColumnIndex("name"));
+                String job = query.getString(query.getColumnIndex("job"));
                 String sex = query.getString(query.getColumnIndex("sex"));
                 String birth = query.getString(query.getColumnIndex("birth"));
                 String death = query.getString(query.getColumnIndex("death"));
@@ -207,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                     map.put("id", id);
                     map.put("image", image);
                     map.put("name", name);
+                    map.put("job", job);
                     map.put("sex", sex);
                     map.put("birth", birth);
                     map.put("death", death);
@@ -215,10 +221,11 @@ public class MainActivity extends AppCompatActivity {
                     map.put("introduction", introduction);
                     list.add(map);
                 } else {
-                    if (name.contains(s)||sex.contains(s)||birth.contains(s)||death.contains(s)) {
+                    if (name.contains(s)||job.contains(s)||sex.contains(s)||birth.contains(s)||death.contains(s)) {
                         map.put("id", id);
                         map.put("image", image);
                         map.put("name", name);
+                        map.put("job", job);
                         map.put("sex", sex);
                         map.put("birth", birth);
                         map.put("death", death);

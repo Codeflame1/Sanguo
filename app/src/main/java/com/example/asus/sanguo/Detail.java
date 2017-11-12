@@ -18,6 +18,7 @@ public class Detail extends AppCompatActivity{
         setContentView(R.layout.detail);
 
         ImageView detailimage = findViewById(R.id.detail_image);
+        ImageView detailframe = findViewById(R.id.detail_imageframe);
         TextView detailname = findViewById(R.id.detail_name);
         TextView detailsex = findViewById(R.id.detail_sex);
         TextView detaildate = findViewById(R.id.detail_date);
@@ -27,6 +28,7 @@ public class Detail extends AppCompatActivity{
         ImageButton detailback = findViewById(R.id.back);
 
         String name = getIntent().getStringExtra("name");
+        String job = getIntent().getStringExtra("job");
         String sex = getIntent().getStringExtra("sex");
         String birth = getIntent().getStringExtra("birth");
         String death = getIntent().getStringExtra("death");
@@ -36,6 +38,7 @@ public class Detail extends AppCompatActivity{
         String image = getIntent().getStringExtra("image");
 
         detailimage.setImageResource(ImageGet.getImage(image));
+        detailframe.setImageResource(ImageGet.getBigFrame(job));
         detailname.setText(name);
         detailsex.setText(sex);
         detaildate.setText(birth + "-" + death);
