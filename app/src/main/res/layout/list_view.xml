@@ -6,28 +6,43 @@
     android:id="@+id/listlayout"
     android:background="@drawable/listviewbackground"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="77dp"
     tools:context="com.example.asus.sanguo.MainActivity">
+
+    <ImageView
+        android:id="@+id/list_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/listviewback2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/list_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/listlayout"
+        app:layout_constraintLeft_toLeftOf="@+id/listlayout"
+        app:layout_constraintTop_toTopOf="@+id/listlayout"
         tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/list_frame"
         android:layout_width="62dp"
         android:layout_height="67dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/list_image"
+        app:layout_constraintEnd_toEndOf="@+id/list_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
@@ -41,9 +56,9 @@
         android:ems="7"
         android:textSize="16sp"
         android:textColor="#C1B785"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/listlayout"
         app:layout_constraintLeft_toRightOf="@+id/list_image"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/listlayout"
         tools:ignore="RtlHardcoded" />
 
     <TextView
@@ -52,24 +67,9 @@
         android:layout_height="wrap_content"
         android:ems="4"
         android:textColor="#C1B785"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/listlayout"
+        app:layout_constraintEnd_toEndOf="@+id/listlayout"
         app:layout_constraintStart_toEndOf="@+id/list_name"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/listviewback2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="@+id/listlayout" />
 
 </android.support.constraint.ConstraintLayout>
