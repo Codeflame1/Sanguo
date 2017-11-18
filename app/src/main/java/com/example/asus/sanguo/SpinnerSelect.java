@@ -33,10 +33,26 @@ public class SpinnerSelect {
 
     static int getImageSelect(String string) {
         switch (string){
-            case "1":
+            case "zhaoyun":
                 return 0;
-            case "2":
+            case "huangyueying":
                 return 1;
+            case "sunshangxiang":
+                return 2;
+            case "caiwenji":
+                return 3;
+            case "diaochan":
+                return 4;
+            case "zhenfu":
+                return 5;
+            case "caocao":
+                return 6;
+            case "lvbu":
+                return 7;
+            case "zhugeliang":
+                return 8;
+            case "zhouyu":
+                return 9;
             default:
                 return 0;
         }

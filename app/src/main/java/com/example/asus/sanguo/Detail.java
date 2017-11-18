@@ -56,6 +56,11 @@ public class Detail extends AppCompatActivity{
         String luck = getIntent().getStringExtra("luck");
         String skil = getIntent().getStringExtra("skil");
 
+        if (birth.equals("0"))
+            birth = "?";
+        if (death.equals("0"))
+            death = "?";
+
         detailimage.setImageResource(ImageGet.getImage(image));
         detailframe.setImageResource(ImageGet.getBigFrame(job));
         detailname.setText(name);

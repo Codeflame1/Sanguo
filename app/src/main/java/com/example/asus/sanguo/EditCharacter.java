@@ -90,8 +90,6 @@ public class EditCharacter extends AppCompatActivity {
         medit_army = edit_army.getEditText();
         medit_introduction = edit_introduction.getEditText();
 
-        edit_image.setImageResource(ImageGet.getImage(image));
-        edit_jobframe.setImageResource(ImageGet.getBigFrame(job));
         edit_imagename.setSelection(SpinnerSelect.getImageSelect(image));
         edit_job.setSelection(SpinnerSelect.getJobSelect(job));
         edit_stre.setSelection(SpinnerSelect.getLevel(stre));

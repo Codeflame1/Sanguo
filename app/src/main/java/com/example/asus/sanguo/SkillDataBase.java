@@ -6,14 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MyDataBase extends SQLiteOpenHelper {
+public class SkillDataBase extends SQLiteOpenHelper {
     //数据库名字
-    private static final String DB_NAME = "Sanguo.db";
+    private static final String DB_NAME = "Skill.db";
     //数据库版本
     private static final int DB_VERSION = 1;
     //表名
-    private static final String TABLE_NAME = "sanguo";
-    static MyDataBase myDataBase;
+    private static final String TABLE_NAME = "skill";
+    static SkillDataBase myDataBase;
 
     /**
      * 单例模式返回数据库
@@ -21,9 +21,9 @@ public class MyDataBase extends SQLiteOpenHelper {
      * @param context 上下文
      * @return 数据库对象
      */
-    static MyDataBase getInstances(Context context) {
+    static SkillDataBase getInstances(Context context) {
         if (myDataBase == null) {
-            return new MyDataBase(context);
+            return new SkillDataBase(context);
         } else {
             return myDataBase;
         }
@@ -31,7 +31,7 @@ public class MyDataBase extends SQLiteOpenHelper {
 
 
     //上下文,数据库名字,数据库工厂,版本号
-    private MyDataBase(Context context) {
+    private SkillDataBase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -39,7 +39,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //这个有个坑,create table"+" " + TABLE_NAME 中间一定要加空格,别问为什么,我也不知道,不加就语法错误,吐血
-        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,image text,name text,job text,sex text,birth text,death text,origo text,army text,introduction text,stre text,endu text,agil text,magi text,luck text,skil text);");
+        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,type text,name text,level text,introduction text);");
 
     }
 
@@ -65,7 +65,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个用来插入数据的方法
      */
-    void insert(String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction, String stre, String endu, String agil, String magi, String luck, String skil) {
+    void insert(String type, String name, String level, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*
@@ -74,23 +74,12 @@ public class MyDataBase extends SQLiteOpenHelper {
         value 对应字段要插入的值
          */
         ContentValues values = new ContentValues();
-        values.put("image", image);
+        values.put("type", type);
         values.put("name", name);
-        values.put("job", job);
-        values.put("sex", sex);
-        values.put("birth", birth);
-        values.put("death", death);
-        values.put("origo", origo);
-        values.put("army", army);
+        values.put("level", level);
         values.put("introduction", introduction);
-        values.put("stre", stre);
-        values.put("endu", endu);
-        values.put("agil", agil);
-        values.put("magi", magi);
-        values.put("luck", luck);
-        values.put("skil", skil);
         //插入
-        database.insert(TABLE_NAME, "image", values);
+        database.insert(TABLE_NAME, "type", values);
         //插入完成后关闭,以免造成内存泄漏
         database.close();
 
@@ -127,7 +116,7 @@ public class MyDataBase extends SQLiteOpenHelper {
 
     Cursor searchQuery(String s, String type) {
         SQLiteDatabase database = getReadableDatabase();
-        String[] clumns = {"id", "image", "name", "job", "sex", "birth", "death", "origo", "army" , "introduction", "stre", "endu", "agil", "magi", "luck", "skil"};
+        String[] clumns = {"id", "type", "name", "level", "introduction"};
         String selection = type + "=?";
         String[] Args = {s};
         return database.query(TABLE_NAME, clumns, selection, Args, null, null, null);
@@ -136,15 +125,15 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个删除数据的方法,传入的参数越多,删除时越精确的找到要删除的哪一行
      */
-    public void delete(int id, String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction, String stre, String endu, String agil, String magi, String luck, String skil) {
+    public void delete(int id, String type, String name, String level, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
         /*
         删除的条件,当id = 传入的参数id时,sex = 传入的参数sex时,age = 传入的age,hobby = 传入的hobby时
         当条件都满足时才删除这行数据,一个条件不满足就删除失败
          */
-        String where = "id=? and image = ? and name = ? and job = ? and sex = ? and birth = ? and death = ? and origo = ? and army = ? and introduction = ? and stre = ? and endu = ? and agil = ? and magi = ? and luck = ? and skil = ?";
+        String where = "id=? and type = ? and name = ? and level = ? and introduction = ? ";
         //删除条件的参数
-        String[] whereArgs = {id + "", image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil};
+        String[] whereArgs = {id + "", type, name, level, introduction};
         database.delete(TABLE_NAME, where, whereArgs);
         database.close();
     }
@@ -164,27 +153,16 @@ public class MyDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个修改数据的方法
      */
-    void updata(int id, String image, String name, String job, String sex, String birth, String death, String origo, String army, String introduction, String stre, String endu, String agil, String magi, String luck, String skil) {
+    void updata(int id, String type, String name, String level, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
 //        update(String table,ContentValues values,String  whereClause, String[]  whereArgs)
         String where = "id = ?";
         String[] whereArgs = {id+""};
         ContentValues values = new ContentValues();
-        values.put("image",image);
+        values.put("type", type);
         values.put("name", name);
-        values.put("job", job);
-        values.put("sex", sex);
-        values.put("birth", birth);
-        values.put("death", death);
-        values.put("origo", origo);
-        values.put("army", army);
+        values.put("level", level);
         values.put("introduction", introduction);
-        values.put("stre", stre);
-        values.put("endu", endu);
-        values.put("agil", agil);
-        values.put("magi", magi);
-        values.put("luck", luck);
-        values.put("skil", skil);
         //参数1  表名称  参数2  跟行列ContentValues类型的键值对Key-Value
         // 参数3  更新条件（where字句）    参数4  更新条件数组
         database.update(TABLE_NAME, values,where, whereArgs);

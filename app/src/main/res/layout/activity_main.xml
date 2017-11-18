@@ -13,6 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/listviewbackground"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -50,14 +51,11 @@
 
     <Button
         android:id="@+id/characterlistadd"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/buttonshaperound"
-        android:text="@string/add_character_button"
-        android:textColor="@color/colorwhite"
-        android:textSize="25sp"
+        android:background="@mipmap/back3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

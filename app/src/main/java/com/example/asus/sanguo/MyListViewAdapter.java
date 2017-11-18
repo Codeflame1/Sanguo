@@ -41,6 +41,15 @@ public class MyListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
+
+        String birth = list.get(i).get("birth").toString();
+        String death = list.get(i).get("death").toString();
+
+        if (birth.equals("0"))
+            birth = "?";
+        if (death.equals("0"))
+            death = "?";
+
         if (view == null) {
             holder = new ViewHolder();
             view = LayoutInflater.from(context).inflate(R.layout.list_view, null);
@@ -55,7 +64,7 @@ public class MyListViewAdapter extends BaseAdapter {
         holder.image.setImageResource(ImageGet.getImage(list.get(i).get("image").toString()));
         holder.frame.setImageResource(ImageGet.getSmallFrame(list.get(i).get("job").toString()));
         holder.name.setText(list.get(i).get("name").toString());
-        holder.date.setText(list.get(i).get("birth").toString()+"-"+list.get(i).get("death").toString());
+        holder.date.setText(birth+"-"+death);
 
         return view;
     }
