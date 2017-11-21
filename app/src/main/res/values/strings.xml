@@ -9,6 +9,7 @@
     <string name="property_origo">籍贯：</string>
     <string name="property_army">主效势力：</string>
     <string name="property_introduction">详情：</string>
+    <string name="addcharacterfull"><font size="16sp"><b>新建英灵</b></font>\n<font size="8sp">New Character</font></string>
     <string name="name">姓名</string>
     <string name="job">职介</string>
     <string name="sex">性别</string>

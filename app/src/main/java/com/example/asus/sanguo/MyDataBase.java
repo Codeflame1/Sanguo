@@ -149,6 +149,8 @@ public class MyDataBase extends SQLiteOpenHelper {
         database.close();
     }
 
+
+
     /**
      * 再创建一个删除一个删除的方法,条件只有一个
      */
