@@ -9,15 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import java.util.List;
 import java.util.Map;
 
-public class MyListViewAdapter extends BaseAdapter {
+public class SkillListViewAdapter extends BaseAdapter {
     private Context context;
     private List<Map<String, Object>> list;
 
-    MyListViewAdapter(Context context, List<Map<String, Object>> list) {
+    SkillListViewAdapter(Context context, List<Map<String, Object>> list) {
         this.context = context;
         this.list = list;
     }
@@ -42,37 +41,23 @@ public class MyListViewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
 
-        String birth = list.get(i).get("birth").toString();
-        String death = list.get(i).get("death").toString();
-
-        if (birth.equals("0"))
-            birth = "?";
-        if (death.equals("0"))
-            death = "?";
-
         if (view == null) {
             holder = new ViewHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.list_view, null);
-            holder.image = view.findViewById(R.id.list_image);
-            holder.frame = view.findViewById(R.id.list_frame);
-            holder.name = view.findViewById(R.id.list_name);
-            holder.date = view.findViewById(R.id.list_date);
+            view = LayoutInflater.from(context).inflate(R.layout.skill_list, null);
+            holder.name = view.findViewById(R.id.slist_name);
+            holder.level = view.findViewById(R.id.slist_level);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.image.setImageResource(ImageGet.getImage(list.get(i).get("image").toString()));
-        holder.frame.setImageResource(ImageGet.getSmallFrame(list.get(i).get("job").toString()));
         holder.name.setText(list.get(i).get("name").toString());
-        holder.date.setText(birth+"-"+death);
+        holder.level.setText(list.get(i).get("level").toString());
 
         return view;
     }
     static class ViewHolder{
-        ImageView image;
-        ImageView frame;
         TextView name;
-        TextView date;
+        TextView level;
     }
     void refreshList(List<Map<String, Object>> list){
         this.list = list;

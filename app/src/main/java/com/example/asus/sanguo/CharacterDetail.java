@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 
 @SuppressLint("Registered")
-public class Detail extends AppCompatActivity{
+public class CharacterDetail extends AppCompatActivity{
 
     @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.characterdetail);
 
         ImageView detailimage = findViewById(R.id.detail_image);
         ImageView detailframe = findViewById(R.id.detail_imageframe);

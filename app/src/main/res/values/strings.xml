@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sanguo</string>
     <string name="property_name">姓名：</string>
@@ -10,6 +11,9 @@
     <string name="property_army">主效势力：</string>
     <string name="property_introduction">详情：</string>
     <string name="addcharacterfull"><font size="16sp"><b>新建英灵</b></font>\n<font size="8sp">New Character</font></string>
+    <string name="littletestfull"><b>知识测试</b>\nKnowledge Test</string>
+    <string name="type">类型</string>
+    <string name="level">等级</string>
     <string name="name">姓名</string>
     <string name="job">职介</string>
     <string name="sex">性别</string>

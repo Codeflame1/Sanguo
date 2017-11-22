@@ -9,7 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="16dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -39,20 +42,32 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/characterlist"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
 
-        </ListView>
+            <ListView
+                android:id="@+id/characterlist"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ListView
+                android:id="@+id/skilllist"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:background="@drawable/listviewbackground"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="45dp"
@@ -63,42 +78,49 @@
                 android:id="@+id/characterlistadd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:text="@string/addcharacterfull"
                 android:textAllCaps="false"
                 android:textColor="#C1B785"
-                android:textSize="12sp"
-                android:background="@android:color/transparent"
-                android:layout_weight="1"/>
+                android:textSize="12sp" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="45dp"
                 android:background="@mipmap/gosinal"
                 tools:ignore="ContentDescription" />
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textAllCaps="false"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:layout_weight="1"/>
+                android:textAllCaps="false" />
+
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="45dp"
                 android:background="@mipmap/gosinal"
                 tools:ignore="ContentDescription" />
+
             <Button
+                android:id="@+id/littletestgoto"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textAllCaps="false"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:layout_weight="1"/>
+                android:text="@string/littletestfull"
+                android:textAllCaps="false"
+                android:textColor="#C1B785"
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/characterlittletest"
+        android:id="@+id/characterskillchange"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="50dp"

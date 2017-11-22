@@ -46,7 +46,7 @@ public class EditCharacter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_detail);
+        setContentView(R.layout.edit_characterdetail);
         id = getIntent().getIntExtra("id", 0);
         String name = getIntent().getStringExtra("name");
         String job = getIntent().getStringExtra("job");
@@ -190,7 +190,7 @@ public class EditCharacter extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
+                    CharacterDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
                     finish();
                 }
             }

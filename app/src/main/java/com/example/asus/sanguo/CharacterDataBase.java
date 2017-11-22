@@ -6,14 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MyDataBase extends SQLiteOpenHelper {
+public class CharacterDataBase extends SQLiteOpenHelper {
     //数据库名字
     private static final String DB_NAME = "Sanguo.db";
     //数据库版本
     private static final int DB_VERSION = 1;
     //表名
     private static final String TABLE_NAME = "sanguo";
-    static MyDataBase myDataBase;
+    static CharacterDataBase characterDataBase;
 
     /**
      * 单例模式返回数据库
@@ -21,17 +21,17 @@ public class MyDataBase extends SQLiteOpenHelper {
      * @param context 上下文
      * @return 数据库对象
      */
-    static MyDataBase getInstances(Context context) {
-        if (myDataBase == null) {
-            return new MyDataBase(context);
+    static CharacterDataBase getInstances(Context context) {
+        if (characterDataBase == null) {
+            return new CharacterDataBase(context);
         } else {
-            return myDataBase;
+            return characterDataBase;
         }
     }
 
 
     //上下文,数据库名字,数据库工厂,版本号
-    private MyDataBase(Context context) {
+    private CharacterDataBase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

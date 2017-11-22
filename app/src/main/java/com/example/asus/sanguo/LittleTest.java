@@ -54,7 +54,7 @@ public class LittleTest extends AppCompatActivity{
         /*初始化候选答案*/
         this.candidateAnswers = new String[3];
         /*获取游标数据：整个表中的人物数据*/
-        data = MyDataBase.getInstances(LittleTest.this).query();
+        data = CharacterDataBase.getInstances(LittleTest.this).query();
         /*这里获取sanguo表中共存可几个人物的数据：获取行数*/
         this.PERSONNUMBER = data.getCount();
 

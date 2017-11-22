@@ -45,7 +45,7 @@ public class AddCharacter extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_detail);
+        setContentView(R.layout.add_characterdetail);
 
         Button add_confirm = findViewById(R.id.add_buttonconfirm);
         Button add_cancel = findViewById(R.id.add_buttoncancel);
@@ -158,7 +158,7 @@ public class AddCharacter extends AppCompatActivity{
                     add_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    MyDataBase.getInstances(AddCharacter.this).insert(image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
+                    CharacterDataBase.getInstances(AddCharacter.this).insert(image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
                     finish();
                 }
             }
