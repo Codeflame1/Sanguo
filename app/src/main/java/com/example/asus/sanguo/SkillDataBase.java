@@ -38,7 +38,6 @@ public class SkillDataBase extends SQLiteOpenHelper {
     //此方法中创建表
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        //这个有个坑,create table"+" " + TABLE_NAME 中间一定要加空格,别问为什么,我也不知道,不加就语法错误,吐血
         sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,type text,name text,level text,introduction text);");
 
     }

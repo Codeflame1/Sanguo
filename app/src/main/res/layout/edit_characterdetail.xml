@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background"
-            tools:context="com.example.asus.sanguo.EditCharacter">
+            tools:context="com.example.asus.sanguo.CharacterEdit">
 
             <Spinner
                 android:id="@+id/edit_image_name"

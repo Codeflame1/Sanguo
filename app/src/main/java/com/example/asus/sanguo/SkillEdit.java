@@ -6,14 +6,12 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 @SuppressLint("Registered")
-public class EditSkill extends AppCompatActivity {
+public class SkillEdit extends AppCompatActivity {
 
     private int id;
     private Spinner edit_type;
@@ -42,7 +40,7 @@ public class EditSkill extends AppCompatActivity {
         medit_name = edit_name.getEditText();
         medit_introduction = edit_introduction.getEditText();
 
-        edit_type.setSelection(SpinnerSelect.getJobSelect(type));
+        edit_type.setSelection(SpinnerSelect.getType(type));
         edit_level.setSelection(SpinnerSelect.getLevel(level));
         medit_name.setText(name);
         medit_introduction.setText(introduction);
@@ -67,7 +65,7 @@ public class EditSkill extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    SkillDataBase.getInstances(EditSkill.this).updata(id, name, type, introduction, level);
+                    SkillDataBase.getInstances(SkillEdit.this).updata(id, name, type, introduction, level);
                     finish();
                 }
             }

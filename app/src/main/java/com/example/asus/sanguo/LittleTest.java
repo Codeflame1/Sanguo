@@ -39,7 +39,7 @@ public class LittleTest extends AppCompatActivity{
     final int BIRTH = 0;
     final int DEATH = 1;
     final int ORIGO = 2;
-    final  int ARMY = 3;
+    final int ARMY = 3;
     /*对应问题所需要的数据名称*/
     private String[] dataName = new String[]{"birth","death","origo","army"};
 

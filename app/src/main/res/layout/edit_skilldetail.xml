@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background"
-            tools:context="com.example.asus.sanguo.EditCharacter">
+            tools:context="com.example.asus.sanguo.CharacterEdit">
 
             <TextView
                 android:id="@+id/skilledit_pro_type"
@@ -31,7 +31,7 @@
                 android:layout_width="220dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
-                android:entries="@array/fatejob"
+                android:entries="@array/fatetype"
                 android:background="@drawable/detailtexthape"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/skilledit_pro_type"
@@ -171,7 +171,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/edit_buttonconfirm"
+                app:layout_constraintStart_toEndOf="@+id/skilledit_buttonconfirm"
                 app:layout_constraintTop_toBottomOf="@+id/edit_introduction" />
 
         </android.support.constraint.ConstraintLayout>

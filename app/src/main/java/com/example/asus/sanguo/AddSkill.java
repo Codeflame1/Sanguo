@@ -13,7 +13,6 @@ import android.widget.Spinner;
 @SuppressLint("Registered")
 public class AddSkill extends AppCompatActivity {
 
-    private int id;
     private Spinner add_type;
     private TextInputLayout add_name;
     private TextInputLayout add_introduction;
@@ -54,7 +53,7 @@ public class AddSkill extends AppCompatActivity {
                     add_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    SkillDataBase.getInstances(AddSkill.this).updata(id, name, type, introduction, level);
+                    SkillDataBase.getInstances(AddSkill.this).insert(name, type, introduction, level);
                     finish();
                 }
             }

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 @SuppressLint("Registered")
-public class EditCharacter extends AppCompatActivity {
+public class CharacterEdit extends AppCompatActivity {
 
     private int id;
     private Spinner edit_imagename;
@@ -190,7 +190,7 @@ public class EditCharacter extends AppCompatActivity {
                     edit_introduction.setError(getString(R.string.introduction) + getString(R.string.text_error_empty));
                 } else {
                     //调用插入方法
-                    CharacterDataBase.getInstances(EditCharacter.this).updata(id, image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
+                    CharacterDataBase.getInstances(CharacterEdit.this).updata(id, image, name, job, sex, birth, death, origo, army ,introduction, stre, endu, agil, magi, luck, skil);
                     finish();
                 }
             }

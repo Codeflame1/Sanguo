@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mSkillList;
     private Button CSChange;
     private Button mCharacterListAdd;
+    private Button mSkillListAdd;
     private Button mLittletest;
     private ImageButton searchButton;
     private EditText msearch;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mCharacterList = findViewById(R.id.characterlist);
         mSkillList = findViewById(R.id.skilllist);
         mCharacterListAdd = findViewById(R.id.characterlistadd);
+        mSkillListAdd = findViewById(R.id.skilllistadd);
         mLittletest = findViewById(R.id.littletestgoto);
         CSChange = findViewById(R.id.characterskillchange);
         TextInputLayout characterlistsearch = findViewById(R.id.characterlistsearch);
@@ -102,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String search = msearch.getText().toString().trim();
                 List<Map<String, Object>> data1 = getCharacterData(search);
+                List<Map<String, Object>> data2 = getSkillData(search);
                 cadapter.refreshList(data1);
+                sadapter.refreshList(data2);
             }
         });
 
@@ -111,6 +115,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddCharacter.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        //点击跳转宝具增加
+        mSkillListAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddSkill.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -175,17 +188,17 @@ public class MainActivity extends AppCompatActivity {
                 String luck = clist.get(position).get("luck").toString();
                 String skil = clist.get(position).get("skil").toString();
                 Intent intent = new Intent(MainActivity.this, CharacterDetail.class);
-                intent.putExtra("id", i);
-                intent.putExtra("image", image);
-                intent.putExtra("name", name);
-                intent.putExtra("job", job);
-                intent.putExtra("sex", sex);
-                intent.putExtra("birth", birth);
-                intent.putExtra("death", death);
-                intent.putExtra("origo", origo);
-                intent.putExtra("army", army);
-                intent.putExtra("introduction", introduction)
-                      .putExtra("stre", stre)
+                intent.putExtra("id", i)
+                        .putExtra("image", image)
+                        .putExtra("name", name)
+                        .putExtra("job", job)
+                        .putExtra("sex", sex)
+                        .putExtra("birth", birth)
+                        .putExtra("death", death)
+                        .putExtra("origo", origo)
+                        .putExtra("army", army)
+                        .putExtra("introduction", introduction)
+                        .putExtra("stre", stre)
                         .putExtra("endu", endu)
                         .putExtra("agil", agil)
                         .putExtra("magi", magi)
@@ -202,34 +215,34 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
 //                //删除是要拿到当前行的id值才能删除当前行,下面的操作都是点击某个item拿到对应item的id字段
 //                //拿到当前position的 item的所有数据
-                Object id = clist.get(position).get("id");
+                Object id = slist.get(position).get("id");
                 int i = Integer.parseInt(id.toString());
                 String type = slist.get(position).get("type").toString();
-                String name = clist.get(position).get("name").toString();
-                String skill = clist.get(position).get("skill").toString();
-                String introduction = clist.get(position).get("introduction").toString();
+                String name = slist.get(position).get("name").toString();
+                String level = slist.get(position).get("level").toString();
+                String introduction = slist.get(position).get("introduction").toString();
 
                 //将得到id传入到需要的方法中
-                showSkillDialog(i, type, name, skill, introduction);
+                showSkillDialog(i, type, name, level, introduction);
                 return true;
             }
         });
 
-        mCharacterList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mSkillList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> cadapterView, View view, int position, long l) {
-                Object id = clist.get(position).get("id");
+                Object id = slist.get(position).get("id");
                 int i = Integer.parseInt(id.toString());
                 String type = slist.get(position).get("type").toString();
-                String name = clist.get(position).get("name").toString();
-                String skill = clist.get(position).get("skill").toString();
-                String introduction = clist.get(position).get("introduction").toString();
+                String name = slist.get(position).get("name").toString();
+                String level = slist.get(position).get("level").toString();
+                String introduction = slist.get(position).get("introduction").toString();
                 Intent intent = new Intent(MainActivity.this, SkillDetail.class);
-                intent.putExtra("id", i);
-                intent.putExtra("type", type);
-                intent.putExtra("name", name);
-                intent.putExtra("skill", skill);
-                intent.putExtra("introduction", introduction);
+                intent.putExtra("id", i)
+                        .putExtra("type", type)
+                        .putExtra("name", name)
+                        .putExtra("level", level)
+                        .putExtra("introduction", introduction);
                 startActivityForResult(intent,0);
             }
         });
@@ -246,17 +259,17 @@ public class MainActivity extends AppCompatActivity {
         mcdialog.getWindow().findViewById(R.id.dia_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EditCharacter.class);
-                intent.putExtra("id", id);
-                intent.putExtra("image", image);
-                intent.putExtra("name", name);
-                intent.putExtra("job", job);
-                intent.putExtra("sex", sex);
-                intent.putExtra("birth", birth);
-                intent.putExtra("death", death);
-                intent.putExtra("origo", origo);
-                intent.putExtra("army", army);
-                intent.putExtra("introduction", introduction)
+                Intent intent = new Intent(MainActivity.this, CharacterEdit.class);
+                intent.putExtra("id", id)
+                        .putExtra("image", image)
+                        .putExtra("name", name)
+                        .putExtra("job", job)
+                        .putExtra("sex", sex)
+                        .putExtra("birth", birth)
+                        .putExtra("death", death)
+                        .putExtra("origo", origo)
+                        .putExtra("army", army)
+                        .putExtra("introduction", introduction)
                         .putExtra("stre", stre)
                         .putExtra("endu", endu)
                         .putExtra("agil", agil)
@@ -296,12 +309,12 @@ public class MainActivity extends AppCompatActivity {
         msdialog.getWindow().findViewById(R.id.dia_edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EditCharacter.class);
-                intent.putExtra("id", id);
-                intent.putExtra("name", name);
-                intent.putExtra("type", type);
-                intent.putExtra("level", level);
-                intent.putExtra("introduction", introduction);
+                Intent intent = new Intent(MainActivity.this, SkillEdit.class);
+                intent.putExtra("id", id)
+                        .putExtra("type", type)
+                        .putExtra("name", name)
+                        .putExtra("level", level)
+                        .putExtra("introduction", introduction);
                 startActivityForResult(intent,0);
                 msdialog.dismiss();
             }

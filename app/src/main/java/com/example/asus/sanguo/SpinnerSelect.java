@@ -1,8 +1,5 @@
 package com.example.asus.sanguo;
 
-/**
- * Created by ASUS on 2017-11-12.
- */
 
 public class SpinnerSelect {
     public SpinnerSelect(){
@@ -89,8 +86,22 @@ public class SpinnerSelect {
                 return 7;
             case "EX":
                 return 8;
+            default:
+                return 0;
         }
-        return 0;
+    }
+
+    static int getType(String string) {
+        switch (string){
+            case "固有技能":
+                return 0;
+            case "职阶技能":
+                return 1;
+            case "宝具":
+                return 2;
+            default:
+                return 0;
+        }
     }
 
 }

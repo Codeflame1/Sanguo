@@ -17,9 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddCharacter"/>
+        <activity android:name=".AddSkill"/>
+        <activity android:name=".SkillEdit"/>
         <activity android:name=".CharacterDetail"/>
         <activity android:name=".LittleTest"/>
-        <activity android:name=".EditCharacter">
+        <activity android:name=".CharacterEdit">
 
         </activity>
     </application>

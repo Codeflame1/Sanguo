@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sanguo</string>
-    <string name="property_name">姓名：</string>
+    <string name="property_name">名称：</string>
     <string name="property_job">职介：</string>
     <string name="property_sex">性别：</string>
     <string name="property_date">生卒年月：</string>
@@ -10,11 +10,12 @@
     <string name="property_origo">籍贯：</string>
     <string name="property_army">主效势力：</string>
     <string name="property_introduction">详情：</string>
-    <string name="addcharacterfull"><font size="16sp"><b>新建英灵</b></font>\n<font size="8sp">New Character</font></string>
+    <string name="addcharacterfull"><b>新建英灵</b>\nNew Character</string>
+    <string name="addskillfull"><b>新建宝具</b>\nNew Skill</string>
     <string name="littletestfull"><b>知识测试</b>\nKnowledge Test</string>
     <string name="type">类型</string>
     <string name="level">等级</string>
-    <string name="name">姓名</string>
+    <string name="name">名称</string>
     <string name="job">职介</string>
     <string name="sex">性别</string>
     <string name="date">生卒</string>
@@ -36,6 +37,8 @@
     <string name="please_select">请 选 择</string>
     <string name="edit">编辑</string>
     <string name="delete">删除</string>
+    <string name="submitanwser">提交答案</string>
+    <string name="exittest">退出测试</string>
     <string-array name="sexselect">
         <item>男</item>
         <item>女</item>
@@ -73,4 +76,9 @@
         <item>A+++</item>
         <item>EX</item>
     </string-array>
+    <string-array name="fatetype">
+    <item>固有技能</item>
+    <item>职阶技能</item>
+    <item>宝具</item>
+</string-array>
 </resources>

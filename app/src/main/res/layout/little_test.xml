@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorwhite"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/QuestionText"
@@ -14,6 +12,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/detailtexthape"
         android:padding="5dp"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -39,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/detailtexthape"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/detailtexthape"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -55,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/detailtexthape"
             android:padding="5dp"
             android:textSize="20sp" />
 
@@ -64,29 +66,31 @@
         android:id="@+id/SubmitAnswer"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginStart="8dp"
         android:layout_weight="1"
-        android:background="@drawable/littltest_buttonshape"
-        android:text="提交答案"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/exitTest"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/detailbuttonshape"
+        android:text="@string/submitanwser"
+        android:textColor="@color/colorwhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exitTest"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/exitTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/buttonshape"
-        android:text="退出测试"
-        android:textSize="20sp"
+        android:background="@drawable/detailbuttonshape"
+        android:text="@string/exittest"
+        android:textColor="@color/colorwhite"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/SubmitAnswer" />
 
 </android.support.constraint.ConstraintLayout>
