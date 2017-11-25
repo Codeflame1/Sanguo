@@ -13,6 +13,7 @@
     <string name="addcharacterfull"><b>新建英灵</b>\nNew Character</string>
     <string name="addskillfull"><b>新建宝具</b>\nNew Skill</string>
     <string name="littletestfull"><b>知识测试</b>\nKnowledge Test</string>
+    <string name="owner">拥有者</string>
     <string name="type">类型</string>
     <string name="level">等级</string>
     <string name="name">名称</string>

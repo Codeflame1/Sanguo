@@ -127,7 +127,7 @@
         android:layout_height="70dp"
         android:layout_marginBottom="50dp"
         android:layout_marginEnd="20dp"
-        android:background="@mipmap/back3"
+        android:background="@mipmap/characterpng"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

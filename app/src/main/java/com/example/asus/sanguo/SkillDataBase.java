@@ -38,7 +38,7 @@ public class SkillDataBase extends SQLiteOpenHelper {
     //此方法中创建表
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,type text,name text,level text,introduction text);");
+        sqLiteDatabase.execSQL("create table" + " " + TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT,owner text,type text,name text,level text,introduction text);");
 
     }
 
@@ -64,7 +64,7 @@ public class SkillDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个用来插入数据的方法
      */
-    void insert(String type, String name, String level, String introduction) {
+    void insert(String owner, String type, String name, String level, String introduction) {
         //让数据库可写
         SQLiteDatabase database = getWritableDatabase();
         /*
@@ -73,6 +73,7 @@ public class SkillDataBase extends SQLiteOpenHelper {
         value 对应字段要插入的值
          */
         ContentValues values = new ContentValues();
+        values.put("owner", owner);
         values.put("type", type);
         values.put("name", name);
         values.put("level", level);
@@ -108,34 +109,34 @@ public class SkillDataBase extends SQLiteOpenHelper {
         return database.query(TABLE_NAME, null, null, null, null, null, null);
     }
 
-    Cursor rawQuery(String name) {
-        SQLiteDatabase database = getReadableDatabase();
-        return database.query(TABLE_NAME, null, "name='"+name+"'", null, null, null, null);
-    }
-
-    Cursor searchQuery(String s, String type) {
-        SQLiteDatabase database = getReadableDatabase();
-        String[] clumns = {"id", "type", "name", "level", "introduction"};
-        String selection = type + "=?";
-        String[] Args = {s};
-        return database.query(TABLE_NAME, clumns, selection, Args, null, null, null);
-    }
-
-    /**
-     * 创建一个删除数据的方法,传入的参数越多,删除时越精确的找到要删除的哪一行
-     */
-    public void delete(int id, String type, String name, String level, String introduction) {
-        SQLiteDatabase database = getWritableDatabase();
-        /*
-        删除的条件,当id = 传入的参数id时,sex = 传入的参数sex时,age = 传入的age,hobby = 传入的hobby时
-        当条件都满足时才删除这行数据,一个条件不满足就删除失败
-         */
-        String where = "id=? and type = ? and name = ? and level = ? and introduction = ? ";
-        //删除条件的参数
-        String[] whereArgs = {id + "", type, name, level, introduction};
-        database.delete(TABLE_NAME, where, whereArgs);
-        database.close();
-    }
+//    Cursor rawQuery(String name) {
+//        SQLiteDatabase database = getReadableDatabase();
+//        return database.query(TABLE_NAME, null, "name='"+name+"'", null, null, null, null);
+//    }
+//
+//    Cursor searchQuery(String s, String type) {
+//        SQLiteDatabase database = getReadableDatabase();
+//        String[] clumns = {"id", "type", "name", "level", "introduction"};
+//        String selection = type + "=?";
+//        String[] Args = {s};
+//        return database.query(TABLE_NAME, clumns, selection, Args, null, null, null);
+//    }
+//
+//    /**
+//     * 创建一个删除数据的方法,传入的参数越多,删除时越精确的找到要删除的哪一行
+//     */
+//    public void delete(int id, String type, String name, String level, String introduction) {
+//        SQLiteDatabase database = getWritableDatabase();
+//        /*
+//        删除的条件,当id = 传入的参数id时,sex = 传入的参数sex时,age = 传入的age,hobby = 传入的hobby时
+//        当条件都满足时才删除这行数据,一个条件不满足就删除失败
+//         */
+//        String where = "id=? and type = ? and name = ? and level = ? and introduction = ? ";
+//        //删除条件的参数
+//        String[] whereArgs = {id + "", type, name, level, introduction};
+//        database.delete(TABLE_NAME, where, whereArgs);
+//        database.close();
+//    }
 
     /**
      * 再创建一个删除一个删除的方法,条件只有一个
@@ -152,12 +153,13 @@ public class SkillDataBase extends SQLiteOpenHelper {
     /**
      * 创建一个修改数据的方法
      */
-    void updata(int id, String type, String name, String level, String introduction) {
+    void updata(int id, String owner, String type, String name, String level, String introduction) {
         SQLiteDatabase database = getWritableDatabase();
 //        update(String table,ContentValues values,String  whereClause, String[]  whereArgs)
         String where = "id = ?";
         String[] whereArgs = {id+""};
         ContentValues values = new ContentValues();
+        values.put("owner", owner);
         values.put("type", type);
         values.put("name", name);
         values.put("level", level);

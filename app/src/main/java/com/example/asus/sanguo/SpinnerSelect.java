@@ -24,7 +24,7 @@ public class SpinnerSelect {
             case "ruler":
                 return 7;
             default:
-                return 7;
+                return 0;
         }
     }
 
@@ -62,7 +62,7 @@ public class SpinnerSelect {
             case "女":
                 return 1;
             default:
-                return 1;
+                return 0;
         }
     }
 

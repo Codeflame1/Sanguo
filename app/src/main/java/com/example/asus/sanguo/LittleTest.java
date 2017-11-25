@@ -16,8 +16,7 @@ import android.widget.TextView;
 /**
  * 计划：
  * 功能：
- * 1、测试：题目有四个类型（生年、卒年、籍贯、国家），答案不能为0，不能有相同的；
- * 2、积分：记录最高的三位分数，正确一次加10分，错一次减5分，最后记录前三个分数（有余力时实现）；
+ * 1、测试：题目有四个类型（生年、卒年、籍贯 分数，正确一次加10分，错一次减5分，最后记录前三个分数（有余力时实现）；
  * 函数：
  * String[] getCandidateAnswers(String dataName,String answer);返回准备好的候选答案;
  *
@@ -36,6 +35,7 @@ public class LittleTest extends AppCompatActivity{
     /*候选答案:三个*/
     private String[] candidateAnswers;
     /*各个问题的 ID*/
+    private boolean isOkay;
     final int BIRTH = 0;
     final int DEATH = 1;
     final int ORIGO = 2;
@@ -182,8 +182,8 @@ public class LittleTest extends AppCompatActivity{
      * @param questionID 随机出来的问题 ID。
      * @return 成功返回true，不成功返回false。
      */
-    public boolean readyQuestion(String personName,int questionID){
-        boolean isOkay = true;
+    public void readyQuestion(String personName, int questionID){
+        isOkay = true;
         switch (questionID){
             case BIRTH:
                 question = personName + "在哪一年出生？";
@@ -201,7 +201,6 @@ public class LittleTest extends AppCompatActivity{
                 isOkay = false;
                 break;
         }
-        return isOkay;
     }
     /**
      *准备候选答案。
@@ -222,7 +221,7 @@ public class LittleTest extends AppCompatActivity{
         tempCandidateAnswers[1] = tempData;
         tempData = getData(dataName);
         /*使用其他的判断方式*/
-        Boolean isOkay = false;
+        isOkay = false;
         while (!isOkay){
             isOkay = true;
             for(int i=0;i<2;i++){

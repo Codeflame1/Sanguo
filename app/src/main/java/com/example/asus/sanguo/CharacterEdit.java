@@ -1,7 +1,5 @@
 package com.example.asus.sanguo;
 
-import android.annotation.SuppressLint;
-
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-@SuppressLint("Registered")
 public class CharacterEdit extends AppCompatActivity {
 
     private int id;
