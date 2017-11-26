@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton = findViewById(R.id.characterlistsearchButton);
         msearch = characterlistsearch.getEditText();
         msearch.clearFocus();
+        characterlistsearch.clearFocus();
         msearch.setSelected(false);
         if (CharacterDataBase.getInstances(MainActivity.this).query().getCount() == 0){
             CharacterDataBase.getInstances(MainActivity.this).insert("zhaoyun", "赵云(子龙)","lancer","男","158","228","常山真定","蜀汉","    身长八尺，姿颜雄伟，蜀汉五虎上将之一。\n    汉末军阀混战，赵云受本郡推举，率领义从加入白马将军公孙瓒。期间结识了汉室皇亲刘备，但不久之后，因为兄长去世而离开。赵云离开公孙瓒大约七年左右的时间，在邺城与刘备相见，从此追随刘备。","A","B","A+","A","EX","EX");
