@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sanguo</string>
+    <string name="app_name">Fate/Three Country</string>
     <string name="property_name">名称：</string>
     <string name="property_job">职介：</string>
     <string name="property_sex">性别：</string>
